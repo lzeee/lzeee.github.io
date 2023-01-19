@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lzeee2023.life","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在十一学校偶尔遇到的一本好书，算法小白必看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《啊哈！算法》读书笔记">
+<meta property="og:url" content="http://lzeee2023.life/2020/03/24/2.%E3%80%8A%E5%95%8A%E5%93%88%EF%BC%81%E7%AE%97%E6%B3%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="层楼">
+<meta property="og:description" content="在十一学校偶尔遇到的一本好书，算法小白必看">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s4.ax1x.com/2021/12/12/obz4ED.png">
+<meta property="article:published_time" content="2020-03-24T06:24:54.000Z">
+<meta property="article:modified_time" content="2022-10-05T16:18:56.454Z">
+<meta property="article:author" content="Shize Gong">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="入门">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s4.ax1x.com/2021/12/12/obz4ED.png">
+
+<link rel="canonical" href="http://lzeee2023.life/2020/03/24/2.%E3%80%8A%E5%95%8A%E5%93%88%EF%BC%81%E7%AE%97%E6%B3%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>《啊哈！算法》读书笔记 | 层楼</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">层楼</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Write codes that work and speak</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lzeee2023.life/2020/03/24/2.%E3%80%8A%E5%95%8A%E5%93%88%EF%BC%81%E7%AE%97%E6%B3%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shize Gong">
+      <meta itemprop="description" content="I'm Shize Gong, a software development engineer from China.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="层楼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《啊哈！算法》读书笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-24 14:24:54" itemprop="dateCreated datePublished" datetime="2020-03-24T14:24:54+08:00">2020-03-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/03/24/2.%E3%80%8A%E5%95%8A%E5%93%88%EF%BC%81%E7%AE%97%E6%B3%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/24/2.《啊哈！算法》读书笔记/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+            <div class="post-description">在十一学校偶尔遇到的一本好书，算法小白必看</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h2><p>去年碰巧在北京十一学校的图书馆里遇到这本书，当时就看的很开心，顶尖初、高中的教育水平属实让人羡慕。后来就买了一本，当作秋招刷题的入门准备书籍，看完感觉还是有一些收获的。这里主要是总结一下这本书的内容，解决一下其中提到的有意思的问题。</p>
+<h2 id="1-本书内容"><a href="#1-本书内容" class="headerlink" title="1.本书内容"></a>1.本书内容</h2><h3 id="1-1-整体思路"><a href="#1-1-整体思路" class="headerlink" title="1.1 整体思路"></a>1.1 整体思路</h3><p><img src="https://s4.ax1x.com/2021/12/12/obz4ED.png" alt="思维导图"><br>这本书从简单的排序讲起，桶排序、冒泡排序以及快速排序，各种经典的排序算法有必要总结并实现一下。然后讲了常见的数据结构：栈、队列和链表，其中用指针实现链表真的是C++初学者的噩梦。之后通过暴力的枚举思想引导到搜索的话题：DFS和BFS，其实搜索就是暴力枚举，不是吗？只是在枚举时涵盖了一些idea，虽然比较万能，但是效率往往比较差。然后讲到了和我地理专业有点相关的最短路径算法，这些不同算法的区别又是什么？之后讲了树，包括二叉树、堆和并查集，还有图的一些算法。</p>
+<h3 id="1-2-亮点"><a href="#1-2-亮点" class="headerlink" title="1.2 亮点"></a>1.2 亮点</h3><p>这本书给人印象最深的，其实是一些形象的比喻和思考，这里记录一下：</p>
+<ul>
+<li>冒泡排序是走一趟让一个数据归位；快排也是走一趟让一个数据归位，但是与此同时将数据分成了基本有序的两块；</li>
+<li>插入排序的过程就像打扑克插牌；</li>
+<li>广度优先用队列，深度优先靠递归；</li>
+<li>递归的本质就是栈；</li>
+<li>BFS、DFS搜索函数内的传参十分关键，传递染色&#x2F;水管朝向&#x2F;路径长度等；</li>
+<li>并查集的关键点就在于“认爹”；</li>
+<li>最短路径的Dijkstra算法与最小生成树的Prim算法异曲同工，都是逐渐找最近点对其他点进行松弛；</li>
+<li>算法和数据结构是相互联系的；</li>
+</ul>
+<h2 id="2-遗留问题"><a href="#2-遗留问题" class="headerlink" title="2.遗留问题"></a>2.遗留问题</h2><h3 id="2-1-快排中，如果将num-0-作为基数pivot，为什么一定要右指针先动、左指针后动？"><a href="#2-1-快排中，如果将num-0-作为基数pivot，为什么一定要右指针先动、左指针后动？" class="headerlink" title="2.1 快排中，如果将num[0]作为基数pivot，为什么一定要右指针先动、左指针后动？"></a>2.1 快排中，如果将num[0]作为基数pivot，为什么一定要右指针先动、左指针后动？</h3><p>假设如果左指针先动，找到一个大于基准值的位置，右指针再动。这样，由于右指针不能越过左指针的原因，不一定能找到小于基准值的位置，这样的交换产生的结果可能是错误的，一个大于基准值的数值被交换到了num[0]。而右指针先动，可以确保交换到左半部分的一定是小于基准值或者就是基准值本身的。</p>
+<h3 id="2-2-如何实现n层for循环嵌套？"><a href="#2-2-如何实现n层for循环嵌套？" class="headerlink" title="2.2 如何实现n层for循环嵌套？"></a>2.2 如何实现n层for循环嵌套？</h3><p>我直接的想法是用递归，每调用一次递归函数相当于一层循环，很直观。而递归的本质是栈，将递归改写成递推其实是我的一个盲点，理论上借助栈应该可以把所有递归改写成递推。实际操作中，尾递归比较容易改写。尾递归指的是在函数结尾调用自己的递归方式。改写消除了递归的思想吗？并没有，只是以另一种方式呈现出来而已。</p>
+<h3 id="2-3-回溯是深度优先吗？"><a href="#2-3-回溯是深度优先吗？" class="headerlink" title="2.3 回溯是深度优先吗？"></a>2.3 回溯是深度优先吗？</h3><p>回溯是一种通常意义上的算法思想，而DFS只是其一种表现形式，后者主要在图、树的遍历中使用。</p>
+<h3 id="2-4-Floodfill算法计算一个图中独立子图的个数"><a href="#2-4-Floodfill算法计算一个图中独立子图的个数" class="headerlink" title="2.4 Floodfill算法计算一个图中独立子图的个数"></a>2.4 Floodfill算法计算一个图中独立子图的个数</h3><p>Floodfill算法应该算是回溯的一种，找独立子图和LeetCode <a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-islands/">200. Number of Islands</a> 的意思大体一致。抓住一个岛屿DFS或BFS对邻居染色，整个地图上能染几次色就总共有几个独立岛屿，比较容易理解。</p>
+<h3 id="2-5-判断图是否为二部图-x2F-二分图"><a href="#2-5-判断图是否为二部图-x2F-二分图" class="headerlink" title="2.5 判断图是否为二部图&#x2F;二分图"></a>2.5 判断图是否为二部图&#x2F;二分图</h3><p>二部图，就是说将一个图的节点分成两部分，每一部分的内部不存在边，边只存在于两部分的节点之间。本书提到了染色法，其实也就是用DFS。对应到LeetCode <a target="_blank" rel="noopener" href="https://leetcode.com/problems/is-graph-bipartite/">785. Is Graph Bipartite?</a>，这道题用0&#x2F;1代表颜色，1-color切换颜色的思路很有趣，方法仍然是标准的DFS。</p>
+<h3 id="2-6-Floyd-Warshall算法计算最短距离的有效性"><a href="#2-6-Floyd-Warshall算法计算最短距离的有效性" class="headerlink" title="2.6 Floyd-Warshall算法计算最短距离的有效性"></a>2.6 Floyd-Warshall算法计算最短距离的有效性</h3><p>这个方法一直因为其长度只有4行而出名，但是我始终没有理解这个算法中的动态规划思想。我的疑惑就在于，仅仅对n个点遍历了一次，以一个点作为中间点去更新所有点对的最短路径。为什么中间点的引入顺序要是从1到n呢？一般意见是这个是逐渐引入n个点作为参考，和顺序无关吗？我感觉是有关的。</p>
+<p>《算法导论》中是用一种递归的角度来解释，假设ij两点最短路径路过的点的最大标号为k，那么ik，kj之间的路径必然也是最优的，而且这两段中的点的标号都比k小。依靠这样的观察，在计算两点之间最短距离时，可以只考虑，引入标号最大点作为中间点的结果。而ik和kj可以递归向前，走到引入k-1时的结果，这样就逐渐向前走，写成递推的形式就是Floyd算法。</p>
+<h3 id="2-7-满二叉树和完全二叉树的区别"><a href="#2-7-满二叉树和完全二叉树的区别" class="headerlink" title="2.7 满二叉树和完全二叉树的区别"></a>2.7 满二叉树和完全二叉树的区别</h3><p>面试也碰到了这个问题，满二叉树就是如果有根节点必须有左右子树，而完全二叉树是左右高度也要一致，然后最后一层不一定填满，但是叶节点必须聚集在左侧。</p>
+<p>如何判断满二叉树？<br>满二叉树的定义国内、国外不同。国内的定义就是全满，必须是一个完整的三角形。而国外的满二叉树左右子树的深度不一定一样，只是说如果是根节点就必须同时有左子树和右子树，所以只需要递归确定即可。左右均为空肯定可以，左右不为空，则要求左右同时为满二叉树。</p>
+<p>如何判断完全二叉树？<br>队列+广度优先，实现二叉树的层序遍历。队列不为空就接着循环，如果某个节点只有右子树，返回false，如果一个节点只有左节点或者其本身是叶节点，那么之后的节点都必须是叶节点才满足，破坏这种状态，返回false。</p>
+<h3 id="2-8-快速建立堆的方法和复杂度"><a href="#2-8-快速建立堆的方法和复杂度" class="headerlink" title="2.8 快速建立堆的方法和复杂度"></a>2.8 快速建立堆的方法和复杂度</h3><p>可以在线性时间O(n)内将无序数组构造成堆。考虑用数组表示树，n&#x2F;2以后就是完全二叉树的叶节点，只需要对每个叶节点进行siftup操作即可。具体证明可见《算法导论》中的建堆。</p>
+<h3 id="2-9-图的最小生成树是唯一的吗？"><a href="#2-9-图的最小生成树是唯一的吗？" class="headerlink" title="2.9 图的最小生成树是唯一的吗？"></a>2.9 图的最小生成树是唯一的吗？</h3><p>当所有边的权值都不相等时，最小生成树是唯一的。为什么？<br>可以用反证法：假设存在两棵最小生成树A和B。A和B的边肯定不全相同，我们拿出A和B包含的不同的边中权值最小的边k。不妨认为k来自A，将k加到B中后，会形成一个环，这个环上至少会有一条边的权值大于k（如果环上所有边的权重全都小于k，根据k的定义，这些边是AB所共有，那么A中就存在环，矛盾），将该边去掉，就得到了一个权重更低的生成树，所以B不是最小生成树，与初始条件矛盾。</p>
+<p>如何判断最小生成树是否唯一呢？<br>最小生成树的算法Kruskal和Prim，前者可以用并查集+sort+贪心，后者和Dijkstra思路异曲同工。用算法生成最小生成树，记录用到的边，依次去掉边并看是否可以生成同样权值的最小生成树即可。一道相关的题目是<a target="_blank" rel="noopener" href="http://poj.org/problem?id=1679">POJ 1679</a>，网上有很多题解，不再赘述。</p>
+<h3 id="2-10-寻找多数元素问题"><a href="#2-10-寻找多数元素问题" class="headerlink" title="2.10 寻找多数元素问题"></a>2.10 寻找多数元素问题</h3><p>问题：找到在一个列表中出现次数超过一半的元素。<br> 解法：<br> 1）走一遍，哈希表计数，时间n空间n；<br> 2）排序取中间的数，时间nlgn空间1；<br> 3）很有意思的思路，去掉两个不同的数，原来的多数元素仍是多数元素<br> 对应到LeetCode <a target="_blank" rel="noopener" href="https://leetcode.com/problems/majority-element/">169. Majority Element</a>，时间N空间1，还是蛮有趣的。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Shize Gong
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://lzeee2023.life/2020/03/24/2.%E3%80%8A%E5%95%8A%E5%93%88%EF%BC%81%E7%AE%97%E6%B3%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《啊哈！算法》读书笔记">http://lzeee2023.life/2020/03/24/2.《啊哈！算法》读书笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E9%98%85%E8%AF%BB/" rel="tag"><i class="fa fa-tag"></i> 阅读</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+              <a href="/tags/%E5%85%A5%E9%97%A8/" rel="tag"><i class="fa fa-tag"></i> 入门</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/27/1.Hello%20world,%20my%20dear%20blog/" rel="prev" title="Hello world, my dear blog">
+      <i class="fa fa-chevron-left"></i> Hello world, my dear blog
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/04/3.%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/" rel="next" title="十大经典排序算法汇总">
+      十大经典排序算法汇总 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%89%8D%E8%A8%80"><span class="nav-text">0.前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%9C%AC%E4%B9%A6%E5%86%85%E5%AE%B9"><span class="nav-text">1.本书内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%95%B4%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-text">1.1 整体思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E4%BA%AE%E7%82%B9"><span class="nav-text">1.2 亮点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%81%97%E7%95%99%E9%97%AE%E9%A2%98"><span class="nav-text">2.遗留问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%BF%AB%E6%8E%92%E4%B8%AD%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%B0%86num-0-%E4%BD%9C%E4%B8%BA%E5%9F%BA%E6%95%B0pivot%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%80%E5%AE%9A%E8%A6%81%E5%8F%B3%E6%8C%87%E9%92%88%E5%85%88%E5%8A%A8%E3%80%81%E5%B7%A6%E6%8C%87%E9%92%88%E5%90%8E%E5%8A%A8%EF%BC%9F"><span class="nav-text">2.1 快排中，如果将num[0]作为基数pivot，为什么一定要右指针先动、左指针后动？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0n%E5%B1%82for%E5%BE%AA%E7%8E%AF%E5%B5%8C%E5%A5%97%EF%BC%9F"><span class="nav-text">2.2 如何实现n层for循环嵌套？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%9B%9E%E6%BA%AF%E6%98%AF%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E5%90%97%EF%BC%9F"><span class="nav-text">2.3 回溯是深度优先吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Floodfill%E7%AE%97%E6%B3%95%E8%AE%A1%E7%AE%97%E4%B8%80%E4%B8%AA%E5%9B%BE%E4%B8%AD%E7%8B%AC%E7%AB%8B%E5%AD%90%E5%9B%BE%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="nav-text">2.4 Floodfill算法计算一个图中独立子图的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E5%88%A4%E6%96%AD%E5%9B%BE%E6%98%AF%E5%90%A6%E4%B8%BA%E4%BA%8C%E9%83%A8%E5%9B%BE-x2F-%E4%BA%8C%E5%88%86%E5%9B%BE"><span class="nav-text">2.5 判断图是否为二部图&#x2F;二分图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-Floyd-Warshall%E7%AE%97%E6%B3%95%E8%AE%A1%E7%AE%97%E6%9C%80%E7%9F%AD%E8%B7%9D%E7%A6%BB%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7"><span class="nav-text">2.6 Floyd-Warshall算法计算最短距离的有效性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%92%8C%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">2.7 满二叉树和完全二叉树的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%8B%E5%A0%86%E7%9A%84%E6%96%B9%E6%B3%95%E5%92%8C%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-text">2.8 快速建立堆的方法和复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-%E5%9B%BE%E7%9A%84%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E6%98%AF%E5%94%AF%E4%B8%80%E7%9A%84%E5%90%97%EF%BC%9F"><span class="nav-text">2.9 图的最小生成树是唯一的吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-%E5%AF%BB%E6%89%BE%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0%E9%97%AE%E9%A2%98"><span class="nav-text">2.10 寻找多数元素问题</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shize Gong"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Shize Gong</p>
+  <div class="site-description" itemprop="description">I'm Shize Gong, a software development engineer from China.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lzeee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lzeee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shzgong@gmail.com" title="E-Mail → mailto:shzgong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shize Gong</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">21k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">19 mins.</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://lzeee.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://lzeee2023.life/2020/03/24/2.%E3%80%8A%E5%95%8A%E5%93%88%EF%BC%81%E7%AE%97%E6%B3%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/";
+    this.page.identifier = "2020/03/24/2.《啊哈！算法》读书笔记/";
+    this.page.title = "《啊哈！算法》读书笔记";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://lzeee.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
