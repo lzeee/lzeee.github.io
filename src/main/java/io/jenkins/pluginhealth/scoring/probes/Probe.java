@@ -53,14 +53,35 @@ public abstract class Probe {
      */
     protected abstract ProbeResult doApply(Plugin plugin, ProbeContext context);
 
+    /**
+     * Get the key of a probe.
+     * Each probe has its own unique key, which is used to get and save the result of the analyze.
+     *
+     * @return a String representing the unique key of a probe
+     */
     public abstract String key();
 
+    /**
+     * Get the description of what a probe analyze.
+     *
+     * @return a String describing the probe's function
+     */
     public abstract String getDescription();
 
+    /**
+     * Determine whether a probe requires that a plugin has been released to do the analyze.
+     *
+     * @return a boolean value describing whether release is required
+     */
     protected boolean requiresRelease() {
         return false;
     }
 
+    /**
+     * Determine whether the analyze of a probe is related to the source code of a plugin.
+     *
+     * @return a boolean value describing whether source code is related
+     */
     protected boolean isSourceCodeRelated() {
         return false;
     }
