@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lzeee2023.life","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="关于编程中的长命名，你怎么看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】长命名就是长">
+<meta property="og:url" content="http://lzeee2023.life/2023/01/22/%E3%80%90%E8%AF%91%E3%80%91%E9%95%BF%E5%91%BD%E5%90%8D%E5%B0%B1%E6%98%AF%E9%95%BF/index.html">
+<meta property="og:site_name" content="层楼">
+<meta property="og:description" content="关于编程中的长命名，你怎么看">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-22T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-30T16:08:13.469Z">
+<meta property="article:author" content="Shize Gong">
+<meta property="article:tag" content="翻译">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lzeee2023.life/2023/01/22/%E3%80%90%E8%AF%91%E3%80%91%E9%95%BF%E5%91%BD%E5%90%8D%E5%B0%B1%E6%98%AF%E9%95%BF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>【译】长命名就是长 | 层楼</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">层楼</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Write codes that work and speak</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lzeee2023.life/2023/01/22/%E3%80%90%E8%AF%91%E3%80%91%E9%95%BF%E5%91%BD%E5%90%8D%E5%B0%B1%E6%98%AF%E9%95%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shize Gong">
+      <meta itemprop="description" content="I'm Shize Gong, a software development engineer from China.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="层楼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】长命名就是长
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-01-22 20:00:00" itemprop="dateCreated datePublished" datetime="2023-01-22T20:00:00+08:00">2023-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2023/01/22/%E3%80%90%E8%AF%91%E3%80%91%E9%95%BF%E5%91%BD%E5%90%8D%E5%B0%B1%E6%98%AF%E9%95%BF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/01/22/%E3%80%90%E8%AF%91%E3%80%91%E9%95%BF%E5%91%BD%E5%90%8D%E5%B0%B1%E6%98%AF%E9%95%BF/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+            <div class="post-description">关于编程中的长命名，你怎么看</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>译自：<a target="_blank" rel="noopener" href="https://journal.stuffwithstuff.com/2016/06/16/long-names-are-long/">Long names are long</a></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>Google的一个明智之举就是进行严格的代码审查。每次代码改动在落地之前，都至少要经过两轮审查。首先，团队中的某个人进行常规审查，确保代码的功能符合预期。</p>
+<p>接下来，还有第二层审查，叫做可读性审查。它确保代码是易读的：它便于理解和维护吗？是否遵循了语法风格和习惯用法？是否有良好的说明文档？</p>
+<p>最近Google内部使用Dart越来越多，而我一直在做相关的代码审查。作为一个语言设计师，这个过程十分有趣。我可以从一线了解人们使用Dart的情况，这对一个语言的持续发展至关重要。我可以清晰地看到最常见的错误和最常用的功能，仿佛自己是一位记录原住民生活的人类学家。</p>
+<p>但是，无论如何，这不是这篇文章的重点，和Dart关系也不大。我想谈论的是我在太多代码中看到的一件快把我逼疯的事：命名怎么就这么长？</p>
+<p>是的，命名有时候太短，当C语言要求标识符前六个字符唯一的时候<sup>1</sup>，当代码自动补齐还没有被发明的时候；当每次按键就像在雪地中向前爬两次的时候，这确实是个问题。我很开心我们生活在乌托邦一样的未来中，像p、idxcrpm和x3这样过度简化的命名很少见了。</p>
+<p>但是摆锤向另一侧摆的太远了。我们不应该成为海明威，但也不应该成为田纳西·威廉姆斯<sup>2</sup>。过长的命名会严重损害代码的清晰度。巨大的标识符，会让你的操作显得微不足道，会让代码很难一眼看完，并且会引入额外的换行符，导致代码流被打断。</p>
+<p>过长的类名会让用户不愿意声明该类型的本地变量，而是将函数嵌套起来使用，导致代码变得冗长而复杂。过长的方法名会让同样重要的函数参数变得模糊。过长的变量名用起来非常烦人，导致冗长的方法链或者级联。</p>
+<p>我曾经见过超过60个字符的标识符，你可以在其中塞进一首短诗或者禅宗轶事（或许比原有的命名更有启发意义），不要担心，我来帮忙了。</p>
+<h2 id="选一个好名字"><a href="#选一个好名字" class="headerlink" title="选一个好名字"></a>选一个好名字</h2><p>一个名称应该有两个目标：</p>
+<ol>
+<li>它需要清晰：你需要知道名称指的是什么。</li>
+<li>它需要确切：你需要知道它不指代什么。</li>
+</ol>
+<p>当一个名称可以完成上述目标之后，任何额外的字符都将是累赘。下面是我在代码命名时遵循的一些原则：</p>
+<h3 id="1-当类型显而易见时，去掉相关单词"><a href="#1-当类型显而易见时，去掉相关单词" class="headerlink" title="1.当类型显而易见时，去掉相关单词"></a>1.当类型显而易见时，去掉相关单词</h3><p>如果你用的语言有静态类型系统，用户通常知道一个变量的类型。方法往往很短，因此即使在查看需要推断类型的本地变量，或者在代码审查时，或者是其他一些没有静态分析的情况下，通常看几行代码也能确定变量的类型。</p>
+<p>鉴于此，在变量名称中增加类型信息是多余的。我们已经做过正确的抉择，放弃了匈牙利命名法<sup>3</sup>，就让它去吧。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 反例：</span><br><span class="line">String nameString</span><br><span class="line">DockableModelessWindow dockableModelessWindow;</span><br><span class="line"></span><br><span class="line">// 正例：</span><br><span class="line">String name;</span><br><span class="line">DockableModelessWindow window;</span><br></pre></td></tr></table></figure>
+
+<p>尤其是对于集合来说，最好使用集合所含内容的复数形式，而不是简单的描述集合的类型。如果读者关心的是集合中的内容，那么就应该反映这一点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 反例：</span><br><span class="line">List&lt;DateTime&gt; holidayDateList;</span><br><span class="line">Map&lt;Employee, Role&gt; employeeRoleHashMap;</span><br><span class="line"></span><br><span class="line">// 正例：</span><br><span class="line">List&lt;DateTime&gt; holidays;</span><br><span class="line">Map&lt;Employee, Role&gt; employeeRoles;</span><br></pre></td></tr></table></figure>
+
+<p>对于函数名称来说也是一样的。函数名称不需要描述它的参数、参数的类型等，这些是参数列表需要做的事。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 反例：</span><br><span class="line">mergeTableCells(List&lt;TableCell&gt; cells)</span><br><span class="line">sortEventsUsingComparator(List&lt;Event&gt; events,</span><br><span class="line">    Comparator&lt;Event&gt; comparator)</span><br><span class="line"></span><br><span class="line">// 正例：</span><br><span class="line">merge(List&lt;TableCell&gt; cells)</span><br><span class="line">sort(List&lt;Event&gt; events, Comparator&lt;Event&gt; comparator)</span><br></pre></td></tr></table></figure>
+
+<p>我认为这样让函数调用更易读了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mergeTableCells(tableCells);</span><br><span class="line">sortEventsUsingComparator(events, comparator);</span><br></pre></td></tr></table></figure>
+<p>只有我这样认为吗？或许有人有不同的想法？</p>
+<h3 id="2-当不能消解歧义时，去掉相关单词"><a href="#2-当不能消解歧义时，去掉相关单词" class="headerlink" title="2.当不能消解歧义时，去掉相关单词"></a>2.当不能消解歧义时，去掉相关单词</h3><p>有些人喜欢将了解到的一切相关内容都塞进名称当中。但是希望你能记住，名称是一个标识符：它指向的被定义的位置。它不是一个详尽的目录，需要向用户介绍所有想要了解的信息。定义需要完成这件事，而名称将用户指引到定义。</p>
+<p>当我看到recentlyUpdatedAnnualSalesBid这样的命名时，我会思考：</p>
+<ul>
+<li>有年度销售投标更新不是最近的吗？</li>
+<li>有最近年度销售投标不是更新的吗？</li>
+<li>有最近更新销售投标不是年度的吗？</li>
+<li>有最近更新年度投标不是销售的吗？</li>
+<li>有最近更新年度销售不是投标的吗？</li>
+</ul>
+<p>上面任意一个问题的答案是否，都意味着有一个多余的单词。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 反例：</span><br><span class="line">finalBattleMostDangerousBossMonster;</span><br><span class="line">weaklingFirstEncounterMonster;</span><br><span class="line"></span><br><span class="line">// 正例：</span><br><span class="line">boss;</span><br><span class="line">firstMonster;</span><br></pre></td></tr></table></figure>
+<p>当然，你也可能做过头。例如把第一个例子缩写成bid可能是过于模糊的。但是如果你有疑问，就把它省略掉。如果后续发现一个命名会导致冲突或误解，那你总是可以再添加新的限定词，但是很少有人会专门回来删除不必要的部分。</p>
+<h3 id="3-当上下文明确时，去掉相关单词"><a href="#3-当上下文明确时，去掉相关单词" class="headerlink" title="3.当上下文明确时，去掉相关单词"></a>3.当上下文明确时，去掉相关单词</h3><p>在这个段落中，我可以使用“我”，因为你知道这篇博文是由Bob Nystrom所写，我的大脸就摆在上面。我不需要一直强调Bob Nystrom（尽管我很想这么做）。代码也是同样的道理，函数或者字段出现在一个类的上下文中，将环境信息视为已知并且不要重复。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 反例：</span><br><span class="line">class AnnualHolidaySale &#123;</span><br><span class="line">  int _annualSaleRebate;</span><br><span class="line">  void promoteHolidaySale() &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 正例：</span><br><span class="line">class AnnualHolidaySale &#123;</span><br><span class="line">  int _rebate;</span><br><span class="line">  void promote() &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上，这意味着如果一个名称所处的嵌套层级越深，它所拥有的上下文环境就越多。这一般意味着它可以有一个较短的名称。效果就是作用域小的变量有较短的名称。</p>
+<h3 id="4-当意义欠缺时，去掉相关单词"><a href="#4-当意义欠缺时，去掉相关单词" class="headerlink" title="4.当意义欠缺时，去掉相关单词"></a>4.当意义欠缺时，去掉相关单词</h3><p>在游戏行业中，我经常看到相关的行为。一些人总是忍不住诱惑为自己的标识符添加严肃的业务术语。我猜想这样可以让他们觉得自己的代码更重要，从而感觉自己更重要。</p>
+<p>在大多数情况下，这些空洞的术语没有任何实际意义。常见的例子比如说：data、state、amout、value、manager、engine、object、entity以及instance。</p>
+<p>一个好的命名会为读者描绘一幅画像。将一个变量命名为manager并不会让读者对它的作用有什么理解.它是用来评估你绩效的吗？还是坐在你旁边问催你快点写TPS报告<sup>4</sup>？</p>
+<p>问问你自己：“如果去掉这个词，这个命名的意义会变化吗？”如果答案是否，那这个词就没用，赶紧删掉。</p>
+<h2 id="将准则用于，，，华夫饼"><a href="#将准则用于，，，华夫饼" class="headerlink" title="将准则用于，，，华夫饼"></a>将准则用于，，，华夫饼</h2><p>为了让你感受到如何在实际工作中应用这些规则，我这里举一个违反所有规则的例子。说实在的，这个编造的例子其实和我在审查代码时看到的真实代码非常接近：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class DeliciousBelgianWaffleObject &#123;</span><br><span class="line">  void garnishDeliciousBelgianWaffleWithStrawberryList(</span><br><span class="line">      List&lt;Strawberry&gt; strawberryList) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们从参数列表中知道它接受的是Strawberry的List（#1），因此我们去掉它：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class DeliciousBelgianWaffleObject &#123;</span><br><span class="line">    void garnishDeliciousBelgianWaffle(</span><br><span class="line">        List&lt;Strawberry&gt; strawberries) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>除非我们的程序包括难吃的比利时华夫饼，或者其他国籍的华夫饼，否则我们就可以去掉这些形容词（#2）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class WaffleObject &#123;</span><br><span class="line">  void garnishWaffle(List&lt;Strawberry&gt; strawberries) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法在一个华夫饼对象中（#3），所以我们知道它是要装饰什么：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class WaffleObject &#123;</span><br><span class="line">  void garnish(List&lt;Strawberry&gt; strawberries) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很明显这是一个对象（#4），一切都是对象，因为这是面向对象编程的含义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Waffle &#123;</span><br><span class="line">  void garnish(List&lt;Strawberry&gt; strawberries) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看，是不是好多了呢？</p>
+<p>我认为上述原则都比较简单。你可能觉得思考这些没啥用，但是我坚持认为，命名是编程时重要的基本任务之一，名称是我们为无形的比特世界赋予的结构。</p>
+<h3 id="译者注："><a href="#译者注：" class="headerlink" title="译者注："></a>译者注：</h3><ol>
+<li><p>六个字符：在早期的C语言标准中，由于技术限制，只有标识符的前六个字符才会被编译器识别和区分。因此，在命名变量、函数和其他标识符时，需要确保前六个字符是唯一的，以避免编译错误或混淆。这个限制在现代编程语言中已经不存在，但是仍然存在一些历史遗留问题需要考虑。</p>
+</li>
+<li><p>海明威和田纳西·威廉姆斯：二人都是文学史上著名的作家，二人在文学风格和修辞手法上有很大的差异。海明威以简洁、明快、雄健的文风而著称，他的小说在语言和情节上都非常精简，很少使用过多的修辞手法。相比之下，田纳西·威廉姆斯则更注重情感和内心世界的描绘，他的作品较为繁复、复杂，并常常使用大量的修辞手法来表达复杂的情感和内心冲突。</p>
+</li>
+<li><p>匈牙利命名法：Hungarian notation是一种变量命名约定，由微软公司的程序员Charles Simonyi在1970年代首先提出并使用。其主要目的是为了提高代码的可读性和可维护性，通过在变量名中添加前缀来表示变量的数据类型和作用。例如，变量名strName表示字符串类型的名称，nCount表示整数类型的计数器，bEnabled表示布尔类型的是否启用等。尽管匈牙利命名法曾经非常流行，但它在现代编程实践中已经不再被广泛使用，因为它被认为增加了代码的复杂性和维护成本。</p>
+</li>
+<li><p>TPS报告：TPS报告是一个商业术语，代表“三部曲报告”（The Three Parts of Status reports），通常在管理咨询和公司管理中使用。三部曲报告的三个部分是：任务（Tasks），问题（Problems）和解决方案（Solutions）。在电影《Office Space》中，TPS报告被用作一种幽默元素，被描绘为一种无聊和烦人的任务，由办公室的管理层强制执行。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Shize Gong
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://lzeee2023.life/2023/01/22/%E3%80%90%E8%AF%91%E3%80%91%E9%95%BF%E5%91%BD%E5%90%8D%E5%B0%B1%E6%98%AF%E9%95%BF/" title="【译】长命名就是长">http://lzeee2023.life/2023/01/22/【译】长命名就是长/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BF%BB%E8%AF%91/" rel="tag"><i class="fa fa-tag"></i> 翻译</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/01/19/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="prev" title="2022年度总结">
+      <i class="fa fa-chevron-left"></i> 2022年度总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/01/23/%E3%80%90%E8%AF%91%E3%80%91%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E5%90%8D/" rel="next" title="【译】代码中的命名">
+      【译】代码中的命名 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E5%90%8D%E5%AD%97"><span class="nav-text">选一个好名字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BD%93%E7%B1%BB%E5%9E%8B%E6%98%BE%E8%80%8C%E6%98%93%E8%A7%81%E6%97%B6%EF%BC%8C%E5%8E%BB%E6%8E%89%E7%9B%B8%E5%85%B3%E5%8D%95%E8%AF%8D"><span class="nav-text">1.当类型显而易见时，去掉相关单词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BD%93%E4%B8%8D%E8%83%BD%E6%B6%88%E8%A7%A3%E6%AD%A7%E4%B9%89%E6%97%B6%EF%BC%8C%E5%8E%BB%E6%8E%89%E7%9B%B8%E5%85%B3%E5%8D%95%E8%AF%8D"><span class="nav-text">2.当不能消解歧义时，去掉相关单词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%BD%93%E4%B8%8A%E4%B8%8B%E6%96%87%E6%98%8E%E7%A1%AE%E6%97%B6%EF%BC%8C%E5%8E%BB%E6%8E%89%E7%9B%B8%E5%85%B3%E5%8D%95%E8%AF%8D"><span class="nav-text">3.当上下文明确时，去掉相关单词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%BD%93%E6%84%8F%E4%B9%89%E6%AC%A0%E7%BC%BA%E6%97%B6%EF%BC%8C%E5%8E%BB%E6%8E%89%E7%9B%B8%E5%85%B3%E5%8D%95%E8%AF%8D"><span class="nav-text">4.当意义欠缺时，去掉相关单词</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E5%87%86%E5%88%99%E7%94%A8%E4%BA%8E%EF%BC%8C%EF%BC%8C%EF%BC%8C%E5%8D%8E%E5%A4%AB%E9%A5%BC"><span class="nav-text">将准则用于，，，华夫饼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%91%E8%80%85%E6%B3%A8%EF%BC%9A"><span class="nav-text">译者注：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shize Gong"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Shize Gong</p>
+  <div class="site-description" itemprop="description">I'm Shize Gong, a software development engineer from China.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lzeee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lzeee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shzgong@gmail.com" title="E-Mail → mailto:shzgong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shize Gong</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">75k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:08</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'S3wPyhDpAXOLoN02reRFscqd-gzGzoHsz',
+      appKey     : 'C0qZCIPYeRbOgUMkRQ6vDmGZ',
+      placeholder: "如果你愿意，随便说点什么吧...",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

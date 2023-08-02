@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lzeee2023.life","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="写完就忘的算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP算法的概要理解">
+<meta property="og:url" content="http://lzeee2023.life/2020/10/02/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%80%E8%A6%81%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="层楼">
+<meta property="og:description" content="写完就忘的算法">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/02/0l4A9U.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/02/0l57Jf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/02/0lTCMF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/02/0lT3dA.png">
+<meta property="article:published_time" content="2020-10-02T13:20:20.000Z">
+<meta property="article:modified_time" content="2022-10-05T16:20:51.000Z">
+<meta property="article:author" content="Shize Gong">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/10/02/0l4A9U.png">
+
+<link rel="canonical" href="http://lzeee2023.life/2020/10/02/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%80%E8%A6%81%E7%90%86%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>KMP算法的概要理解 | 层楼</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">层楼</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Write codes that work and speak</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lzeee2023.life/2020/10/02/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%80%E8%A6%81%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shize Gong">
+      <meta itemprop="description" content="I'm Shize Gong, a software development engineer from China.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="层楼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          KMP算法的概要理解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-02 21:20:20" itemprop="dateCreated datePublished" datetime="2020-10-02T21:20:20+08:00">2020-10-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/10/02/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%80%E8%A6%81%E7%90%86%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/02/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%80%E8%A6%81%E7%90%86%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+            <div class="post-description">写完就忘的算法</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>KMP算法</strong>，是一种字符串匹配算法，刷题可见Leetcode 28，其中“KMP”由三位提出者名字的首字母组成，没什么特殊含义。该算法的核心，是用空间换时间，通过使用部分匹配表来加速字符串匹配的过程。</p>
+<p>首先考虑字符串匹配这个问题。如何判断一个字符串是否为另一个更长字符串的子串呢？最直接的想法就是遍历长串M，每次取出一个长度和目标串N相同的subString进行对比，遍历过程中出现了则是<strong>有</strong>，遍历到最后都没出现则是<strong>无</strong>。</p>
+<p>这个过程，最坏情况下，对长串M的每一个位置都要进行目标串长度N次的对比，时间复杂度粗略记为O(M * N)。这种解法应该是大部分人第一时间直接想到的解法，但正如《剑指offer》中所言，第一时间想到的解法往往时空效率不够好，对面试来说大概率也不是面试官所期待的。那如何加速字符串匹配过程呢？</p>
+<hr>
+<p>废话不多说，下面进入<strong>正题</strong></p>
+<p>KMP算法中，一个核心概念是Partial Match Table（PMT），参考前人翻译成“部分匹配表”，用一句话来解释其含义，就是用一张表记录了待匹配字符串每个位置的子串，最大的前缀&#x2F;后缀公共长度。举个例子，待匹配字符串为“abababc”时，如何生成它的部分匹配表？</p>
+<p>当走到0时，子串为a，此时认为不存在前后缀，值为0；<br>当走到1时，子串为ab，此时前缀为{a}，后缀为{b}，值为0；<br>当走到2时，子串为aba，此时前缀为{a,ab}，后缀为{ba,a}，最长公共部分为a，值为1；<br>当走到3时，子串为abab，此时前缀为{a,ab,aba}，后缀为{bab,ab,b}，最长公共部分为ab，值为2；<br>……</p>
+<p>这样遍历完整个待匹配串后，就可以对每个位置记录一个部分匹配值，生成一张部分匹配表，对于上面的例子来说，这张表如下图所示，绿色部分为最终结果，灰色部分为计算过程。</p>
+<p><img src="https://s1.ax1x.com/2020/10/02/0l4A9U.png" alt="部分匹配表" title="部分匹配表"></p>
+<p>有了这张待匹配串的部分匹配表之后，在字符串匹配过程中如何使用这张表呢？仍然以“abababc”为例子，尝试去匹配找其中是否有目标串“ababc”。</p>
+<ul>
+<li><p>上下两个指针从0开始匹配，走到4时发现不对劲，c和a配不上，这时候前面已经走过的abab和abab是匹配的。我们观察已经匹配成功的最后一个位置，也就是位置3上对应的b，它对应的部分匹配值为2，这个2说明的是以该字符结尾的子串，最大公共前缀&#x2F;后缀长度为2。既然前面已经走过的部分都是匹配的，那么就可以利用这个公共部分，将目标串从开头移动到后面公共的位置，这样就进行了一步加速。<br><img src="https://s1.ax1x.com/2020/10/02/0l57Jf.png" alt="1"></p>
+</li>
+<li><p>待匹配串的指针位置停留在刚才不对劲的地方，也就是指向a不变，目标串的指针位置向前走，指向的位置是刚才观察的最后一处匹配成功的字符所对应的部分匹配值的位置2。为什么要指向2？因为首尾最大公共前缀&#x2F;后缀为2，指向2实际上是跳过了这2个公共的字符，指向了从头算起的第3个字符，也就是下图中的橘色a，部分匹配表就是这样被使用的。<br><img src="https://s1.ax1x.com/2020/10/02/0lTCMF.png" alt="2"></p>
+</li>
+<li><p>之后，两个指针向后走，最后发现匹配成功！done<br><img src="https://s1.ax1x.com/2020/10/02/0lT3dA.png" alt="3"></p>
+</li>
+</ul>
+<p>该算法的核心部分就是理解部分匹配表的含义，以及如何在匹配过程中使用部分匹配表。在整个过程中，指向待匹配字符串的指针是不用回退的，也就是人们在讨论中常说的“主串不回溯”。只有指向目标串的指针有可能回退，而且每次回退不是盲目的从0开始，而是借助部分匹配表跳到一个最省力的位置，这步操作省力就省在跳过了最长的公共部分。需要注意的是，当发生不匹配时，要观察的位置是当前不匹配位置的前一个位置，也就是已匹配位置的最后一个字符处的部分匹配值。</p>
+<p>如果您仔细看到这里，大概已经了解KMP方法思想中的精髓了，但是如何编写KMP算法，那就是完全不同的另一件事了。整个算法不过几十行，但是要理解的话，我不得不加上了几十行的注释。就附在下面，供有缘人阅读，阅读代码可以知道复杂度为O(M+N)，从乘法变成加法，真的佩服。</p>
+<p>在实现过程中还有一些点需要注意。首先使用的表并不是PMT表，而是PMT表向右移动了一位的NEXT表，原因很简单，在匹配过程中，只有当后一位匹配不上时，才会用到前一位的pmt值，这样最后一位的pmt值不就浪费了吗？根本不会用到所以没必要计算了。其次，NEXT中0处的初值设为-1，并不是随随便便设置的，设置成-1，可以在回退到0时方便两个指针同时向后走一位。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int r = strStr(&quot;ababababc&quot;, &quot;abababc&quot;);</span><br><span class="line">        System.out.println(r);</span><br><span class="line">    &#125;</span><br><span class="line">    public static int strStr(String haystack, String needle) &#123;</span><br><span class="line">        // kmp算法</span><br><span class="line">        // 核心思想：使用部分匹配表pmt来加速匹配过程</span><br><span class="line">        // 这里得到的实际上不是pmt，而是pmt的向右移了一位的next</span><br><span class="line">        int[] pmt = getPmt(needle);</span><br><span class="line">        int i = 0;</span><br><span class="line">        int j = 0;</span><br><span class="line">        // 当i=长度或j=长度时，说明 匹配完成 或者 匹配失败</span><br><span class="line">        while(i&lt;haystack.length() &amp;&amp; j&lt;needle.length() )&#123;</span><br><span class="line">            // j=-1说明调用了 j = pmt[0]</span><br><span class="line">            // 其实就是说明在j=0的时候，当前字符不匹配，则j就转到了-1</span><br><span class="line">            // 这时候，i++，j++，就是i向下走一位，j重新回到0的位置</span><br><span class="line"></span><br><span class="line">            // 或者当前两个位置的字符一致，就继续向后匹配</span><br><span class="line">            if(j == -1 || haystack.charAt(i) == needle.charAt(j))&#123;</span><br><span class="line">                // 如果匹配结束，i为匹配子串位置的下一个字符，j为匹配的pattern的长度</span><br><span class="line">                // 所以如果j到了pattern的长度，说明匹配成功，并且结果处只需要用i-j即可得到匹配的起点</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                // 当前两个位置的字符不一致</span><br><span class="line">                // 说明要移动pattern，这里用next数组进行加速</span><br><span class="line">                // 根据前一个位置的最长公共前缀和后缀，可以确定pattern指针j应该指到哪</span><br><span class="line">                // 又因为next实际是pmt右移一位，所以直接就是j=pmt[j]而不需要j=pmt[j-1]</span><br><span class="line">                j = pmt[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(j == needle.length())&#123;</span><br><span class="line">            return i-j;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 生成 向右移一位 的部分匹配表</span><br><span class="line">    public static int[] getPmt(String needle)&#123;</span><br><span class="line">        // 第一个位置设为-1</span><br><span class="line">        // 实际上这里得到的是next，而不是pmt，前者是后者右移了一个单位，方便使用</span><br><span class="line">        // 当后一位不匹配时，才会用到前一个位置的pmt值，所以说pattern的最后一个位置的pmt值是多余的</span><br><span class="line">        int[] next = new int[needle.length()];</span><br><span class="line">        next[0] = -1;</span><br><span class="line"></span><br><span class="line">        int i = 0;</span><br><span class="line">        int j = -1;</span><br><span class="line">        while(i&lt;needle.length()-1)&#123;</span><br><span class="line">            //j为-1，说明是最开始，第一个字符的公共前后缀为0没错</span><br><span class="line">            //或者两个字符一致，说明当前两个字符匹配，都可以向后走一步</span><br><span class="line">            //下一个位置的next指向j+1，j是字符一致的位置，j+1是下次开始考虑的位置</span><br><span class="line">            if(j == -1 || needle.charAt(i) == needle.charAt(j))&#123;</span><br><span class="line">                next[i+1] = j+1;</span><br><span class="line">                i ++;</span><br><span class="line">                j ++;</span><br><span class="line">            &#125;</span><br><span class="line">            //不是最开始，并且两个字符不匹配</span><br><span class="line">            //则需要调整j到左侧最近的位置</span><br><span class="line">            else&#123;</span><br><span class="line">                j = next[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Shize Gong
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://lzeee2023.life/2020/10/02/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%80%E8%A6%81%E7%90%86%E8%A7%A3/" title="KMP算法的概要理解">http://lzeee2023.life/2020/10/02/【算法】KMP算法的简要理解/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/04/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/" rel="prev" title="十大经典排序算法汇总">
+      <i class="fa fa-chevron-left"></i> 十大经典排序算法汇总
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/12/%E3%80%90%E8%AF%BB%E4%B9%A6%E3%80%91%E5%90%8E%E7%AB%AF%E7%A8%8B%E5%BA%8F%E5%91%98-%E4%B8%AA%E4%BA%BA%E4%B9%A6%E5%8D%95/" rel="next" title="后端程序员-个人书单">
+      后端程序员-个人书单 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shize Gong"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Shize Gong</p>
+  <div class="site-description" itemprop="description">I'm Shize Gong, a software development engineer from China.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lzeee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lzeee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shzgong@gmail.com" title="E-Mail → mailto:shzgong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shize Gong</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">75k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:08</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'S3wPyhDpAXOLoN02reRFscqd-gzGzoHsz',
+      appKey     : 'C0qZCIPYeRbOgUMkRQ6vDmGZ',
+      placeholder: "如果你愿意，随便说点什么吧...",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

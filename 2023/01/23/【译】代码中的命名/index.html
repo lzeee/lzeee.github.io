@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lzeee2023.life","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="关于代码中命名的思考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】代码中的命名">
+<meta property="og:url" content="http://lzeee2023.life/2023/01/23/%E3%80%90%E8%AF%91%E3%80%91%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E5%90%8D/index.html">
+<meta property="og:site_name" content="层楼">
+<meta property="og:description" content="关于代码中命名的思考">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-23T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-31T15:34:17.430Z">
+<meta property="article:author" content="Shize Gong">
+<meta property="article:tag" content="翻译">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lzeee2023.life/2023/01/23/%E3%80%90%E8%AF%91%E3%80%91%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E5%90%8D/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>【译】代码中的命名 | 层楼</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">层楼</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Write codes that work and speak</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lzeee2023.life/2023/01/23/%E3%80%90%E8%AF%91%E3%80%91%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E5%90%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shize Gong">
+      <meta itemprop="description" content="I'm Shize Gong, a software development engineer from China.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="层楼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】代码中的命名
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-01-23 20:00:00" itemprop="dateCreated datePublished" datetime="2023-01-23T20:00:00+08:00">2023-01-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2023/01/23/%E3%80%90%E8%AF%91%E3%80%91%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E5%90%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/01/23/%E3%80%90%E8%AF%91%E3%80%91%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E5%90%8D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+            <div class="post-description">关于代码中命名的思考</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>译自：<a target="_blank" rel="noopener" href="https://journal.stuffwithstuff.com/2009/06/05/naming-things-in-code/">Naming Things in Code</a></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>当我在设计软件时，我会花很多时间去考虑命名。对我而言，命名是设计过程中重要的一部分。命名就是在定义。</p>
+<blockquote>
+<p>In the beginning was the Word, and the Word was with God, and the Word was God.<br>—— 约翰福音</p>
+</blockquote>
+<p>我知道设计到位的一种感受，就是命名正确了。这可能需要一些时间（我在刚开始命名时往往会反复），但没关系，良好的设计需要付出。</p>
+<p>当然，好的命名并不代表好的设计，但是糟糕的命名绝对会毁了一个好的设计。基于此，下面我分享了我在命名时的一些准则。虽然示例是C++的，但是对面向对象的语言或多或少有点参考价值。</p>
+<h2 id="类型（class，interface，struct）"><a href="#类型（class，interface，struct）" class="headerlink" title="类型（class，interface，struct）"></a>类型（class，interface，struct）</h2><p>名称应该是一个名词短语。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad:  Happy</span><br><span class="line">Good: Happiness</span><br></pre></td></tr></table></figure>
+
+<p>不要使用命名空间的前缀，因为这是命名空间的作用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad:  SystemOnlineMessage</span><br><span class="line">Good: System::Online::Message</span><br></pre></td></tr></table></figure>
+
+<p>使用恰如其分的形容词来明确含义。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad:  IAbstractFactoryPatternBase</span><br><span class="line">Good: IFactory</span><br></pre></td></tr></table></figure>
+
+<p>不要在类型名称中使用”Manger”、”Helper”这种无意义的单词。如果一种类型有这种词，要么是命名失败要么是设计失败。类型应该是不言自明的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Bad:  ConnectionManager</span><br><span class="line">      XmlHelper</span><br><span class="line">Good: Connection</span><br><span class="line">      XmlDocument, XmlNode, etc.</span><br></pre></td></tr></table></figure>
+
+<p>如果一个类不代表具体的东西，考虑使用隐喻。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Bad:  IncomingMessageQueue</span><br><span class="line">      CharacterArray</span><br><span class="line">      SpatialOrganizer</span><br><span class="line">Good: Mailbox</span><br><span class="line">      String</span><br><span class="line">      Map</span><br></pre></td></tr></table></figure>
+
+<p>如果使用隐喻，请一以贯之。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad:  Mailbox, DestinationID</span><br><span class="line">Good: Mailbox, Address</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数（function，procedure）"><a href="#函数（function，procedure）" class="headerlink" title="函数（function，procedure）"></a>函数（function，procedure）</h2><p>简单明了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad:  list.GetNumberOfItems();</span><br><span class="line">Good: list.Count();</span><br></pre></td></tr></table></figure>
+
+<p>别过于简洁。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad:  list.Verify();</span><br><span class="line">Good: list.ContainsNull();</span><br></pre></td></tr></table></figure>
+
+<p>缩写正确。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad:  list.Srt();</span><br><span class="line">Good: list.Sort();</span><br></pre></td></tr></table></figure>
+<p>用动词命名执行操作的函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Bad:  obj.RefCount();</span><br><span class="line">Good: list.Clear();</span><br><span class="line">      list.Sort();</span><br><span class="line">      obj.AddReference();</span><br></pre></td></tr></table></figure>
+<p>像问问题一样命名返回布尔值的函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Bad:  list.Empty();</span><br><span class="line">Good: list.IsEmpty();</span><br><span class="line">      list.Contains(item);</span><br></pre></td></tr></table></figure>
+<p>用名词命名只返回值不改变状态的函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad:  list.GetCount();</span><br><span class="line">Good: list.Count(); (C#中应该用properties)</span><br></pre></td></tr></table></figure>
+<p>不要让名称与参数重复。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Bad:  list.AddItem(item);</span><br><span class="line">      handler.ReceiveMessage(msg);</span><br><span class="line">Good: list.Add(item);</span><br><span class="line">      handler.Receive(msg);</span><br></pre></td></tr></table></figure>
+<p>不要让名称和执行的对象重复。<br>Don’t make the name redundant with the receiver.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad:  list.AddToList(item);</span><br><span class="line">Good: list.Add(item);</span><br></pre></td></tr></table></figure>
+<p>只有在返回值类型有多种重载时才强调它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Bad:  list.GetCountInt();</span><br><span class="line">Good: list.GetCount();</span><br><span class="line">      message.GetIntValue();</span><br><span class="line">      message.GetFloatValue();</span><br></pre></td></tr></table></figure>
+<p>不要在命名里使用“and”和“or”。如果一个名称中有连词，该函数可能承担了过多的职责，不妨将其拆解开来并分别命名。考虑给一个函数或类进行命名，可以帮你思考这是否是一个原则操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Bad:  mail.VerifyAddressAndSendStatus();</span><br><span class="line">Good: mail.VerifyAddress();</span><br><span class="line">      mail.SendStatus();</span><br></pre></td></tr></table></figure>
+
+<h2 id="这重要吗？"><a href="#这重要吗？" class="headerlink" title="这重要吗？"></a>这重要吗？</h2><p>对我来说，这个问题的答案显而易见。一个命名良好的模块很快就能告诉你它的作用，仅仅阅读一小部分，你就能快速构建起对整个系统的认知模型。如果系统中有“MailBox”，即使你不读代码，你也会期望看到“Mail”、“Addresses”这种概念。</p>
+<p>命名良好的代码可以帮助你更好地和其他同事沟通，这有助于代码知识的传播。没有人想在沟通的时候一直重复类似 “ISrvMgrInstanceDescriptorFactory” 这种名字。</p>
+<p>另一方面，糟糕的命名就像给你加了一堵空气墙，强迫你努力在脑海里运行这些代码，思考它的目的，然后转化到你自己的话语体系下。“哦，DoCheck()看起来是在遍历检查connection是否都live着，那我不如叫它AreConnectionsLive()”，整个过程缓慢并且没办法共享。</p>
+<p>从我看过的代码来看，模块内命名的一致性和模块的一致性往往是相辅相成的。当我感觉命名很难时，很有可能是这个东西本身设计就有问题，可能是违背了单一职责原则，或者是缺少了某些部分。</p>
+<p>很难说我们的设计好或者坏，但是我很确信的一点就是当命名困难时，设计往往是错误的。现在我在设计时会尝试关注这一点，一旦我觉得命名不错，通常来说我对设计也比较满意。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Shize Gong
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://lzeee2023.life/2023/01/23/%E3%80%90%E8%AF%91%E3%80%91%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E5%90%8D/" title="【译】代码中的命名">http://lzeee2023.life/2023/01/23/【译】代码中的命名/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BF%BB%E8%AF%91/" rel="tag"><i class="fa fa-tag"></i> 翻译</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/01/22/%E3%80%90%E8%AF%91%E3%80%91%E9%95%BF%E5%91%BD%E5%90%8D%E5%B0%B1%E6%98%AF%E9%95%BF/" rel="prev" title="【译】长命名就是长">
+      <i class="fa fa-chevron-left"></i> 【译】长命名就是长
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/01/28/%E3%80%90%E8%AF%BB%E4%B9%A6%E3%80%91%E3%80%8A%E6%96%AF%E5%9D%A6%E7%A6%8F%E4%BA%BA%E7%94%9F%E8%AE%BE%E8%AE%A1%E8%AF%BE%E3%80%8B/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%EF%BC%88class%EF%BC%8Cinterface%EF%BC%8Cstruct%EF%BC%89"><span class="nav-text">类型（class，interface，struct）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%EF%BC%88function%EF%BC%8Cprocedure%EF%BC%89"><span class="nav-text">函数（function，procedure）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%99%E9%87%8D%E8%A6%81%E5%90%97%EF%BC%9F"><span class="nav-text">这重要吗？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shize Gong"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Shize Gong</p>
+  <div class="site-description" itemprop="description">I'm Shize Gong, a software development engineer from China.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lzeee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lzeee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shzgong@gmail.com" title="E-Mail → mailto:shzgong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shize Gong</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">75k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:08</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'S3wPyhDpAXOLoN02reRFscqd-gzGzoHsz',
+      appKey     : 'C0qZCIPYeRbOgUMkRQ6vDmGZ',
+      placeholder: "如果你愿意，随便说点什么吧...",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

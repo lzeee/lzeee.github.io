@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lzeee2023.life","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="私有方法测试看起来是一件小事，但是你有考虑过吗？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】私有方法到底怎么测试">
+<meta property="og:url" content="http://lzeee2023.life/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95%E5%88%B0%E5%BA%95%E6%80%8E%E4%B9%88%E6%B5%8B/index.html">
+<meta property="og:site_name" content="层楼">
+<meta property="og:description" content="私有方法测试看起来是一件小事，但是你有考虑过吗？">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-01T04:14:00.000Z">
+<meta property="article:modified_time" content="2023-07-30T10:03:48.142Z">
+<meta property="article:author" content="Shize Gong">
+<meta property="article:tag" content="翻译">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lzeee2023.life/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95%E5%88%B0%E5%BA%95%E6%80%8E%E4%B9%88%E6%B5%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>【译】私有方法到底怎么测试 | 层楼</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">层楼</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Write codes that work and speak</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lzeee2023.life/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95%E5%88%B0%E5%BA%95%E6%80%8E%E4%B9%88%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shize Gong">
+      <meta itemprop="description" content="I'm Shize Gong, a software development engineer from China.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="层楼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】私有方法到底怎么测试
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-01 12:14:00" itemprop="dateCreated datePublished" datetime="2023-07-01T12:14:00+08:00">2023-07-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95%E5%88%B0%E5%BA%95%E6%80%8E%E4%B9%88%E6%B5%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95%E5%88%B0%E5%BA%95%E6%80%8E%E4%B9%88%E6%B5%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+            <div class="post-description">私有方法测试看起来是一件小事，但是你有考虑过吗？</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>译自：<a target="_blank" rel="noopener" href="https://jesseduffield.com/Testing-Private-Methods/">Still No Consensus On Testing Private Methods</a></p>
+<p>昨天工作的时候，在关于Rust编程的一次会议中，我随口说道：“我觉得大家应该都认可，在编写单元测试的时候，私有方法不应该直接测试，除非在某些特殊情况下。”令我惊讶的是，我错了。现场爆发了一场辩论，大家的观点各不相同。我们快速结束了争论继续开会，但我因为对开发者的思潮判断错误而感觉有些尴尬。</p>
+<p>在整个软件开发行业中，一定有一种观点大多数人都认可，难道不是吗？再猜一下。如果你想知道在这个问题上大家的共识少的有多可怜，不妨阅读一下这些 Stack Overflow 的帖子：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9122708/unit-testing-private-methods-in-c-sharp">这个</a>、<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/48011295/how-to-unit-test-this-private-method">这个</a>、<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34571/how-do-i-test-a-class-that-has-private-methods-fields-or-inner-classes">这个</a>和<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/5601730/should-private-protected-methods-be-under-unit-test">这个</a>。有些人认为我们应该始终直接测试私有方法，而有些人认为我们永远不应该直接测试私有方法。这两种观点不可能同时正确！是否有一种观点更符合软件开发的实际情况呢？</p>
+<p>关于测试私有方法，主要有五种流行的观点：</p>
+<ol>
+<li>从一开始就别用私有方法</li>
+<li>总是测试私有方法</li>
+<li>永远不要测试私有方法</li>
+<li>有时候测试私有方法</li>
+<li>将私有方法提取到一个专门的类中</li>
+</ol>
+<p>在本文中，我将探讨上述每一种观点，然后将它们综合成我自己的经验法则，希望大多数人能够认同我。请注意，我们将基于类和方法的术语进行讨论，但这些观点同样适用于函数式编程语言中的一般函数。</p>
+<h2 id="观点1：从一开始就别用私有方法"><a href="#观点1：从一开始就别用私有方法" class="headerlink" title="观点1：从一开始就别用私有方法"></a>观点1：从一开始就别用私有方法</h2><p>首先我必须排除这个观点，因为大部分人直觉上都会认为它很极端。而且如果它正确的话，我们后面的讨论就完全没意义了。</p>
+<p>这个观点并不是对测试私有方法的攻击，而是对私有方法的攻击，是对尝试预测未来的攻击。其核心的观点是，在编写库代码时，你不可能提前知道你的用户将来会用到哪些方法。将方法默认设置成私有，与默认设置成公有（或受保护）相比，会给你和用户带来更多的问题。这种观点似乎只出现在库开发者中（参见<a target="_blank" rel="noopener" href="https://osoco.es/thoughts/2018/10/the-case-against-private-methods/">这个</a>、<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/8353272/private-vs-protected-visibility-good-practice-concern">这个</a>），因为应用程序开发者可以轻松地通过几次按键将方法置为公有，而库的用户则需要fork代码或提issue并等着回复。</p>
+<p>这种观点的缺点在于：将私有方法提升为公有很容易，但将公有方法降级为私有则会带来不兼容的问题。此外，你的公共API向用户传达了你对他们如何使用你的库的期望。如果基于想象出的用例，额外提供一些原本应该是私有的方法，使公共API变得臃肿，这样只会给用户带来麻烦，因为他们只想知道如何解决已知的用例。这些缺点相互交织：客户错误地使用了错误的方法与你的库交互，进而使重构变得愈发困难。</p>
+<h2 id="观点2：总是测试私有方法"><a href="#观点2：总是测试私有方法" class="headerlink" title="观点2：总是测试私有方法"></a>观点2：总是测试私有方法</h2><p>尽管这不是一个很受欢迎的观点，但仍有一些支持者。主要有三个论点：</p>
+<ul>
+<li><p>在进行测试驱动开发（TDD）时，你需要先编写测试，然后再编写代码，因此不管方法是公有的还是私有的，最好逐个方法进行测试。</p>
+</li>
+<li><p>通过对每个方法进行隔离测试（不考虑访问修饰符），你可以清楚地向读者展示每个独立方法的预期行为，从而使他们更好地理解每个方法在整个项目中所扮演的角色和承担的职责。</p>
+</li>
+<li><p>直接测试私有方法的明显替代方案之一，是套一层公有方法进行测试，但这需要在测试中编写设置代码（比如模拟测试环境、创建对象实例等），这需要写更多的代码，并且可能让测试运行时间更长。如果你更倾向于节约开发时间，并且相信编写公有方法测试的初始成本比重构私有方法测试的持续成本更高，那么最好一开始就对私有方法进行测试，然后再在有必要时花时间持续重构。</p>
+</li>
+</ul>
+<p>有些编程语言比其他语言更容易测试私有方法。如果你平时用的编程语言让这件事困难重重，那你可能很难赞同这个观点。</p>
+<h2 id="观点3：永远不要测试私有方法"><a href="#观点3：永远不要测试私有方法" class="headerlink" title="观点3：永远不要测试私有方法"></a>观点3：永远不要测试私有方法</h2><p>这个观点和前一个完全对立，它的主要论点是，你的类的用户只能通过其公有接口（即类上的公有方法）与该类交互，那么为什么你的测试就要有所不同呢？如果一个私有方法无法通过公有方法访问到，那么它就是无用代码，应该被删除。如果它可以通过公有方法访问到，那么你应该通过公有方法测试这个私有方法，因为测试的目的不就是模拟未来使用这些代码的用户吗？</p>
+<p>这是一个哲学上的论点，但实际上更容易说服人的是：如果你的测试仅依赖于类的公有接口，那么你可以随心所欲地重构该类的内部结构，不用修改任何测试。如果你不需要修改测试，那么就能确定，如果测试出现错误一定意味着搞坏了什么，如果测试一路绿灯则说明你成功地保留了类的原有行为。</p>
+<p>与之相反，如果类的测试依赖了私有方法，并且你在代码重构时删除或修改了任何私有方法，那么你必须重写这些测试，处理新的内部结构。但是这样你对测试的信心就会降低，因为重写测试和重写代码一样容易出错。其次，即使你小心翼翼重写测试，确保类的行为与以前保持一致，这仍然是一个费时费力的过程，可能会阻碍代码库的重构以及健康度的提升。</p>
+<p>前一个观点更强调通过公有方法测试私有方法的初始成本，而这个观点更关注重构的持续成本。</p>
+<h2 id="观点4：有时候测试私有方法"><a href="#观点4：有时候测试私有方法" class="headerlink" title="观点4：有时候测试私有方法"></a>观点4：有时候测试私有方法</h2><p>前面的观点都很强调“公共接口”，但是这个观点质疑什么才是真正的公共接口，什么才是真正的单元。如果你正在编写一个应用程序（运行的二进制文件）而不是库（将代码导出以供其他代码库使用），那么只有一个真正的公共接口，那就是应用程序本身，比如说用户的按键和点击。如果你想像前一个观点所说最大限度地提高重构能力，最好的做法是每次测试都打开应用，并且模拟用户的点击和按键，这样就完全不依赖于任何内部代码，你可以自信地重构代码，而无需修改任何测试。</p>
+<p>在极少数情况下，端到端的测试才算得上明智的选择。比如当你接手了一个几乎不可能运行单元测试的系统，并且打算重构整个代码仓库；或者当你正在构建一个作为标准的参考实现样例，并且准备针对两种实现运行测试以检查功能&#x2F;错误兼容性。然而，在大多数情况下，抛弃单元测试，构造成千上万个模拟真实用户的端到端测试是荒谬的。测试套件如果只包含端到端测试是有一些问题的：</p>
+<ul>
+<li>运行给定测试的时间太长</li>
+<li>编写给定测试的时间太长</li>
+<li>每个测试的复杂性使得目标变得模糊，降低了测试作为文档的能力</li>
+<li>更改功能可能会破坏其他无关功能的测试</li>
+</ul>
+<p>正是基于这些原因，才有了单元测试。作为软件开发工程师，我们通过深入了解应用程序的代码，选出我们认为值得进行独立测试的“单元”，做出妥协（这里指测试范围和代码可维护性的妥协。妥协是常见的，我们必须在不同因素中寻找平衡，尽力满足项目的需求和目标）。我们这样做是因为我们知道，如果重构导致其中一个“单元”被完全消除，我们也需要在其他地方重新编写相关测试，并承担所有上述的成本。</p>
+<p>如果我们测试的是对其他代码而言是公共的，但对最终用户而言是私有的代码，我们必须承认在测试“单元”的选择过程中所固有的任意性。测试一个类中的私有方法和测试应用程序中的类之间只有程度上的差异，而并无本质上的区别。</p>
+<p>这给我们提供了一个封装级别的光谱，随着我们把封装级别逐渐降低，从应用程序开始，到越来越小的切面，到模块、类，最后到私有方法。可以说封装的级别越高，测试就越困难，但封装级别越低，重构就越困难。</p>
+<p>这个观点指出，如果一个私有方法足够自包含（实现独立于外部），并且通过公共接口测试它很麻烦，那么可以毫不犹豫直接测试它，如果有人反对这种做法，其实是双重标准。</p>
+<h2 id="观点5：将私有方法提取到一个专门的类中"><a href="#观点5：将私有方法提取到一个专门的类中" class="headerlink" title="观点5：将私有方法提取到一个专门的类中"></a>观点5：将私有方法提取到一个专门的类中</h2><p>这个观点是在前一个观点的基础上的，如果你想要测试一个私有方法，这意味着你的类可能承担了太多职责，已经违反了单一职责原则（SRP，Single Responsibility Principle）。</p>
+<p>在《Working With Legacy Code》中，作者Michael Feathers提到：</p>
+<blockquote>
+<p>如果我们需要测试一个私有方法，我们应该将它变成公有方法。如果将其变成公有方法让我们感到困扰，大多数情况下，这意味着我们的类做了太多的事情，我们应该进行修正。</p>
+</blockquote>
+<p>（个人而言，我无法想象为了测试而将方法公开而不感到困扰，但你可以理解这个观点）</p>
+<p>在《Practical Object Oriented Design in Ruby》一书中，Sandi Metz也提到：</p>
+<blockquote>
+<p>希望被测试的私有方法可能是SRP违规的代码异味。</p>
+</blockquote>
+<p>前面的观点认为选择“单元”是随意的，而这个观点则持不同意见。如果你想要测试私有代码，这说明你在代码中发现了一个没有明确表示的抽象边界。可能你想要测试一些直接映射到问题域的算法（这里指算法和业务逻辑是直接关联的，没有太多的中间层和抽象），这种情况下它应该构建出自己的抽象。</p>
+<p>通过将私有方法提取到一个专门的类中，我们可以通过公共接口测试这个类，还有一点额外好处，就是可以把新类作为依赖项注入到原来的类中，方便模拟新类的行为，这样代码和测试都保持了责任的分离。</p>
+<p>如果将单个函数包装成一个类感觉有点极端，并且你的编程语言支持函数独立于类而存在，那么本观点显然支持你把私有方法提取成独立的函数，前提是你能处理好它和相关实例变量之间的依赖关系。</p>
+<h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2><p>我们从一个十分激进的观点1开始，认为就不应该有任何私有方法。这确实简化了测试过程，但封装的缺失可能会让工作变得一团糟。</p>
+<p>然后我们考虑了两种完全相互矛盾的观点，观点2认为不要测试私有方法，观点3则希望测试所有方法，无论是公共还是私有。接着观点4提出，不论你在封装光谱的什么位置，以高级别（比如类）或低级别（比如私有方法）进行测试都是各有利弊，如果利大于弊，写测试没什么不好意思的。</p>
+<p>然后观点5出现，它给我们扔了个扳手，提议说需要测试私有方法这件事本身就是代码异味，这表明这个类的责任太多了。</p>
+<p>一个强烈支持公共API的观点3的支持者可能会对观点5的支持者说：等一下！到目前为止，我们一直讨论的是重构和封装，但你把焦点转向了单一职责。将私有方法移动到私有类中并没有减轻重构的负担：我们可能需要删除&#x2F;更改私有类，就像我们之前做私有方法一样，这意味着无论如何，都要重写测试。而且这还需要你的编程语言支持私有类，如果不支持，这样做实际上扩充了公共API，暴露了不希望用户用到的类！再说了，将一个纯函数的私有方法移动到独立的文件中，而这个方法只被一个类使用，这真的有意义吗？如何提高代码可读性呢？</p>
+<p>而支持观点5的人则可以反驳说：想对私有方法进行测试，就说明存在一个没意识到的独立抽象。这个抽象与那些你认为不需要进行测试的私有方法比，更不需要被重构。</p>
+<h2 id="我的建议"><a href="#我的建议" class="headerlink" title="我的建议"></a>我的建议</h2><p>我的建议是：尽量让类的公共接口简洁，默认把方法设置成私有。如果你发现自己想直接测试一组私有方法，请认真考虑是否抽取一个类（或独立函数），但是只有当它本身有意义，而不是单独为了测试时，才能这样做。如果你想测试一个私有方法，并且觉得把它从类里提取出来没什么意义，那就把它转换成纯函数（只依赖输入参数，不引用实例变量，没有其他副作用）再做测试。这样，如果以后你想把函数挪到其他地方，移动相关的测试代码就跟复制粘贴一样。</p>
+<p>在这场讨论中，我有没有忽略或曲解任何观点呢？你是否同意我的观点呢？我是不是以偏概全了？请告诉我，下次见！</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://anthonysciamanna.com/2016/02/14/should-private-methods-be-tested.html">Should Private Methods Be Tested?</a> - Anthony Sciamanna</p>
+<p><a target="_blank" rel="noopener" href="https://www.artima.com/articles/testing-private-methods-with-junit-and-suiterunner">Testing Private Methods with JUnit and SuiteRunner</a> - Bill Venners</p>
+<p><a target="_blank" rel="noopener" href="https://fishbowl.pastiche.org/2003/03/28/testing_private_methods_dont_do_it">Testing private methods (don’t do it)</a> - Charles Miller</p>
+<p><a target="_blank" rel="noopener" href="https://oli.me.uk/test-private-methods/">Test private methods</a> - Oliver Caldwell</p>
+<p><a target="_blank" rel="noopener" href="https://osoco.es/thoughts/2018/10/the-case-against-private-methods/">The case against private methods</a> - José san leandro</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Shize Gong
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://lzeee2023.life/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95%E5%88%B0%E5%BA%95%E6%80%8E%E4%B9%88%E6%B5%8B/" title="【译】私有方法到底怎么测试">http://lzeee2023.life/2023/07/01/【译】私有方法到底怎么测/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BF%BB%E8%AF%91/" rel="tag"><i class="fa fa-tag"></i> 翻译</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/29/%E3%80%90%E8%AF%91%E3%80%91%E6%97%B6%E9%97%B4%E5%92%8C%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="prev" title="【译】时间和注意力的区别">
+      <i class="fa fa-chevron-left"></i> 【译】时间和注意力的区别
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E6%BB%91%E9%93%81%E5%8D%A2%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC/" rel="next" title="【译】滑铁卢编程风格">
+      【译】滑铁卢编程风格 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E7%82%B91%EF%BC%9A%E4%BB%8E%E4%B8%80%E5%BC%80%E5%A7%8B%E5%B0%B1%E5%88%AB%E7%94%A8%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="nav-text">观点1：从一开始就别用私有方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E7%82%B92%EF%BC%9A%E6%80%BB%E6%98%AF%E6%B5%8B%E8%AF%95%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="nav-text">观点2：总是测试私有方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E7%82%B93%EF%BC%9A%E6%B0%B8%E8%BF%9C%E4%B8%8D%E8%A6%81%E6%B5%8B%E8%AF%95%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="nav-text">观点3：永远不要测试私有方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E7%82%B94%EF%BC%9A%E6%9C%89%E6%97%B6%E5%80%99%E6%B5%8B%E8%AF%95%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="nav-text">观点4：有时候测试私有方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E7%82%B95%EF%BC%9A%E5%B0%86%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95%E6%8F%90%E5%8F%96%E5%88%B0%E4%B8%80%E4%B8%AA%E4%B8%93%E9%97%A8%E7%9A%84%E7%B1%BB%E4%B8%AD"><span class="nav-text">观点5：将私有方法提取到一个专门的类中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BA"><span class="nav-text">讨论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="nav-text">我的建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5"><span class="nav-text">链接</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shize Gong"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Shize Gong</p>
+  <div class="site-description" itemprop="description">I'm Shize Gong, a software development engineer from China.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lzeee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lzeee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shzgong@gmail.com" title="E-Mail → mailto:shzgong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shize Gong</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">75k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:08</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'S3wPyhDpAXOLoN02reRFscqd-gzGzoHsz',
+      appKey     : 'C0qZCIPYeRbOgUMkRQ6vDmGZ',
+      placeholder: "如果你愿意，随便说点什么吧...",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lzeee2023.life","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="译自：Waterloo Style 在我刚开始学编程时，我偶然遇到过一种非常强大的编程哲学，它在20世纪80年代在滑铁卢大学相当流行。 在接触到这种哲学之前，哪怕很简单的编程任务我也要苦苦挣扎。接触到以后，对于几乎任何要编码的内容，甚至包括系统级的工程，比如数据库、操作系统和分布式系统等，我构建它们的唯一问题就是能不能找到足够的时间。 我一遍又一遍地尝试，希望用不同的方式在博客中解释它。但我总感觉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】滑铁卢编程风格">
+<meta property="og:url" content="http://lzeee2023.life/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E6%BB%91%E9%93%81%E5%8D%A2%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC/index.html">
+<meta property="og:site_name" content="层楼">
+<meta property="og:description" content="译自：Waterloo Style 在我刚开始学编程时，我偶然遇到过一种非常强大的编程哲学，它在20世纪80年代在滑铁卢大学相当流行。 在接触到这种哲学之前，哪怕很简单的编程任务我也要苦苦挣扎。接触到以后，对于几乎任何要编码的内容，甚至包括系统级的工程，比如数据库、操作系统和分布式系统等，我构建它们的唯一问题就是能不能找到足够的时间。 我一遍又一遍地尝试，希望用不同的方式在博客中解释它。但我总感觉">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-01T04:14:00.000Z">
+<meta property="article:modified_time" content="2023-08-02T15:40:48.778Z">
+<meta property="article:author" content="Shize Gong">
+<meta property="article:tag" content="翻译">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lzeee2023.life/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E6%BB%91%E9%93%81%E5%8D%A2%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>【译】滑铁卢编程风格 | 层楼</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">层楼</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Write codes that work and speak</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lzeee2023.life/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E6%BB%91%E9%93%81%E5%8D%A2%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shize Gong">
+      <meta itemprop="description" content="I'm Shize Gong, a software development engineer from China.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="层楼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】滑铁卢编程风格
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-01 12:14:00" itemprop="dateCreated datePublished" datetime="2023-07-01T12:14:00+08:00">2023-07-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E6%BB%91%E9%93%81%E5%8D%A2%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E6%BB%91%E9%93%81%E5%8D%A2%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>译自：<a target="_blank" rel="noopener" href="https://theprogrammersparadox.blogspot.com/2023/04/waterloo-style.html">Waterloo Style</a></p>
+<p>在我刚开始学编程时，我偶然遇到过一种非常强大的编程哲学，它在20世纪80年代在滑铁卢大学相当流行。</p>
+<p>在接触到这种哲学之前，哪怕很简单的编程任务我也要苦苦挣扎。接触到以后，对于几乎任何要编码的内容，甚至包括系统级的工程，比如数据库、操作系统和分布式系统等，我构建它们的唯一问题就是能不能找到足够的时间。</p>
+<p>我一遍又一遍地尝试，希望用不同的方式在博客中解释它。但我总感觉在尝试定义的过程中词不达意，没办法让读者完全理解。</p>
+<p>这里，我想再试一次。</p>
+<p>核心的顿悟是：你应该忽略代码，它们并不重要，它们只是一大堆供愚蠢的计算机执行的指令。</p>
+<p>如果你尝试通过平铺直叙的方式罗列代码来构建系统，你会在它正常工作之前发疯的，所以千万别那么做。</p>
+<p>相反，你应该专注于数据，弄清楚数据是如何流动的。</p>
+<p>假设数据被存在某个磁盘上，保存在某种类型的数据库中。但用户想在他们的屏幕上看到数据，并且希望用一些漂亮的界面展示出来。</p>
+<p>在这过程中，你有一些东西在运行着。通过认证，你可以与数据库交互，从中获取所需的数据。之后你拿到数据，调整加工一番，让它优美地展示在屏幕上。而这又可能反过来促使用户修改数据。在这种情况下，你还得从页面上获取数据，并通知数据库去更新它。</p>
+<p>如果你需要另一个系统的数据，你需要给它发送请求，获得一堆数据后，慢慢将它存到你的数据库。如果你要把数据发给其它系统，你会做相反的操作。如果你不想调用其他系统，你也可以让它们将数据推送给你。</p>
+<p>如果你以数据流的方式来观察任何复杂的系统，你会发现它没有那么复杂。数据的视角是编码视角的对立面，我忍不住这么说，但它本质上更简单。</p>
+<p>好了，如果你理解了这个视角，你该怎么使用它呢？</p>
+<p>在面向对象（OO，Object Oriented）的编程范式中，你必须考虑所有用到的数据类型，把它们封装在一个对象中，再把所有与之相关的函数也放进去。然后你只需要操纵这些对象。这样现实世界的实体到编程中的对象是一对一的映射。</p>
+<p>有些非面向对象的技术会让情况变得复杂。但幸运的是，面向对象的核心影响之一是抽象数据类型（ADT，Abstract Data Type）。人们通常将它们视为列表、树、栈等。但它们只在一定程度上是对象，并没有完全采用面向对象的理念（ADT不是将数据和操作一起封装在一个类中，而是组织在一个关系紧密的单元之中。不强调以对象为中心，强调对数据类型的抽象与表示，提供独立可重用的操作手段）。也就是说，任何数据集都有一定的结构，你必须调整逻辑适配处理它，而这被称为“数据结构”。如果能够理解数据的结构，底层的代码机制就能够正确地处理该数据的任意实例。但是遗憾的是，如果处理不当，哪怕只有一个实例不能正确处理，你就必须进行修复。</p>
+<p>有趣的是，ADT哲学适用于任何过程式的语言，如果某语言有类似于typedefs或structs的组合功能，那么效果更佳。你可以把一组变量打包在一起，方便在系统中操作和流转。不是说你必须把变量打包，但这样确实可以减少错误发生。</p>
+<p>如果你把数据打包在一起，并且提供一些小函数，用于处理数据和结构。那么可以把它们全部“封装”在一起，与其他内容隔开，或者就说是一个定义宽松的对象。</p>
+<p>所以，现在回到我们的主要问题上。你在系统中流转数据时，可以用对象、结构体，或者像类似Go语言中的接口来实现。本质上这都是一件事，因为它们都源自最初的ADT哲学。虽然名称和编程语言的能力各不相同，但它们都出自同一种数据结构编码风格。</p>
+<p>现在，剩下的另一个技巧就是在构建过程中需要保持井井有条。因此，这需要一些规则的约束。在系统中引入新数据时，你需要先把它包装在对象或结构体中，然后再在其他地方使用，从底向上逐步构建系统。你不能跳过这一步，不能无视规则，搞特殊情况。</p>
+<p>一旦新数据就绪以后，你只需要把它流转到发挥作用的地方。因为你已经打好了包，你可以随时随地利用它。如果你发现需要一些功能来操纵这些数据，你可以把它加到数据的旁边，也就是对象或者某个数据结构中，所有相关的代码都集中在同一个地方。</p>
+<p>当你以这种方式看待编程时，操作系统只是一堆无比繁杂的数据结构的集合。关系型数据库也是如此，编译器和解释器也是。实际上，几乎所有东西都是。</p>
+<p>绝大多数领域相关的应用程序都是少量的、范围有限的数据结构的集合。先构建出数据结构这一套基础，然后根据需求将数据流转到系统各处。</p>
+<p>极少数情况下，你需要用编码的视角去思考。比如说有些系统的核心部件十分精巧，但是占比通常不超过10%，在这部分确实需要写一些复杂的代码。这种情况下，着手写代码之前不妨做一些研究，实际执行起来并不难。你需要先获取所有要用到的数据，然后以无状态的方式提供给算法，获取所有的输出，再根据需求流转数据。不是很简单吗？</p>
+<p>这种编码方式最常见的反对意见，是认为它包含了过多的对象，或者过多的小函数。但是讽刺的是，如果始终如一坚持这种方式的话，冗余代码比平铺直叙地罗列代码要少很多。一般来说，代码量只有原来的1&#x2F;10。虽然看起来似乎需要做更多工作，但实际不是。</p>
+<p>在使用这种编程方式时，虽然不容易看到项目代码的全局，但实际上更容易确保底层逻辑的正确性。比如说，当代码非常混乱时，问题会潜藏再数百行交织的代码中，你可能很难干净利落地解决它。但如果你有的是一个个小函数，哪个明显有问题，你都可以很方便地修复它，然后逐层向上查看调用堆栈，确保修复不会影响到其他地方。这实际上更省力，而且更简单。因为能正确衡量修复的影响范围，使得变更的安全性猛增1000倍。此外，这样还有一个好处，就是修复了一整个类的错误，而不仅仅是一处错误，这能大幅提高我们的代码质量。</p>
+<p>讨论到这里，在底层封装所有数据确实会增加一些额外开销。对小型的临时程序来说，这样做可能没太大意义，因为你一般很快就能写完这类程序。但对中等规模的系统来说，在项目开发的初期，这样做往往是物有所值的。对于大型的复杂系统来说，它几乎可以指数级地减少开发人力，节省非常多工作量，非常多！</p>
+<p>就是说，你可能刚开始的时候进展慢一点，但是在项目的整个生命周期内，这样做的回报是无比丰厚的。尤其是在大型系统中，这样做的效果非常明显。在大概一年后，大型系统要么变得一团糟糕并且难以维护，要么是可以方便地扩展，增加更多功能。</p>
+<p>软件开发还有很多的内容等你去挖掘。但是你可以先接受软件开发的一些基础哲学，然后再去处理复杂的数据，甚至更进一步，去学一学设计模式（以及如何避免滥用它们）。</p>
+<p>比起平铺直叙的罗列代码，搞清楚如何流转数据，是一种更强大的理解软件系统的方式。掌握这一点，意味着设计、构建复杂系统的问题主要是其他的和人员、过程和政策相关的问题。如果你能轻松地做出任何你想要的东西，那么你在决定要做什么，以及为什么做上，就能有更多选择空间了。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Shize Gong
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://lzeee2023.life/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E6%BB%91%E9%93%81%E5%8D%A2%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC/" title="【译】滑铁卢编程风格">http://lzeee2023.life/2023/07/01/【译】滑铁卢编程风格/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BF%BB%E8%AF%91/" rel="tag"><i class="fa fa-tag"></i> 翻译</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/01/%E3%80%90%E8%AF%91%E3%80%91%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95%E5%88%B0%E5%BA%95%E6%80%8E%E4%B9%88%E6%B5%8B/" rel="prev" title="【译】私有方法到底怎么测试">
+      <i class="fa fa-chevron-left"></i> 【译】私有方法到底怎么测试
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shize Gong"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Shize Gong</p>
+  <div class="site-description" itemprop="description">I'm Shize Gong, a software development engineer from China.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lzeee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lzeee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shzgong@gmail.com" title="E-Mail → mailto:shzgong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shize Gong</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">75k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:08</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'S3wPyhDpAXOLoN02reRFscqd-gzGzoHsz',
+      appKey     : 'C0qZCIPYeRbOgUMkRQ6vDmGZ',
+      placeholder: "如果你愿意，随便说点什么吧...",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

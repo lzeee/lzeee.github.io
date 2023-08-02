@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lzeee2023.life","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一种通俗的HTTPS解释方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】用信鸽解释HTTPS">
+<meta property="og:url" content="http://lzeee2023.life/2023/01/31/%E3%80%90%E8%AF%91%E3%80%91%E7%94%A8%E4%BF%A1%E9%B8%BD%E8%A7%A3%E9%87%8AHTTPS/index.html">
+<meta property="og:site_name" content="层楼">
+<meta property="og:description" content="一种通俗的HTTPS解释方式">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-31T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-05-03T03:46:22.087Z">
+<meta property="article:author" content="Shize Gong">
+<meta property="article:tag" content="翻译">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lzeee2023.life/2023/01/31/%E3%80%90%E8%AF%91%E3%80%91%E7%94%A8%E4%BF%A1%E9%B8%BD%E8%A7%A3%E9%87%8AHTTPS/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>【译】用信鸽解释HTTPS | 层楼</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">层楼</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Write codes that work and speak</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lzeee2023.life/2023/01/31/%E3%80%90%E8%AF%91%E3%80%91%E7%94%A8%E4%BF%A1%E9%B8%BD%E8%A7%A3%E9%87%8AHTTPS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shize Gong">
+      <meta itemprop="description" content="I'm Shize Gong, a software development engineer from China.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="层楼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】用信鸽解释HTTPS
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-01-31 20:00:00" itemprop="dateCreated datePublished" datetime="2023-01-31T20:00:00+08:00">2023-01-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2023/01/31/%E3%80%90%E8%AF%91%E3%80%91%E7%94%A8%E4%BF%A1%E9%B8%BD%E8%A7%A3%E9%87%8AHTTPS/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/01/31/%E3%80%90%E8%AF%91%E3%80%91%E7%94%A8%E4%BF%A1%E9%B8%BD%E8%A7%A3%E9%87%8AHTTPS/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+            <div class="post-description">一种通俗的HTTPS解释方式</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>译自：<a target="_blank" rel="noopener" href="https://baida.dev/articles/https-explained-with-carrier-pigeons">HTTPS explained with carrier pigeons</a></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>密码学可能是一个复杂的学科，其中充满了数学证明。如果你不是在开发密码系统，那么其实可以忽略大部分复杂性，从一个更高的视角来理解发生了什么。</p>
+<p>如果你看这篇文章是为了创造下一代HTTPS协议，那很遗憾，只有信鸽是不够的。如果不是的话，那就冲一杯茶，享受一下这篇文章吧~</p>
+<h2 id="小帅，小美和信鸽？"><a href="#小帅，小美和信鸽？" class="headerlink" title="小帅，小美和信鸽？"></a>小帅，小美和信鸽？</h2><p>在互联网上的任何操作（阅读此文、在淘宝上剁手、上传猫猫的照片），都可以归结为和服务器通信，或发送或接收。</p>
+<p>这或许有点抽象，所以不妨让我们想象这些消息是由信鸽来派送的。我知道这个比喻有点武断，但是请相信我，HTTPS和这差不多，只是更快一点。</p>
+<p>我们会讨论小帅、小美和大壮，而不是服务器、客户端和黑客。如果这不是你第一次尝试理解密码学概念，你会认识到这些名字，因为它们在技术文献中被广泛使用。</p>
+<h2 id="第一次通信，too-simple，sometimes-naive"><a href="#第一次通信，too-simple，sometimes-naive" class="headerlink" title="第一次通信，too simple，sometimes naive"></a>第一次通信，too simple，sometimes naive</h2><p>如果小美想给小帅发消息，她可以把信绑在信鸽的腿上，然后抛飞信鸽，小帅收到信鸽，阅读消息，这世界一切都很美好。</p>
+<p>但是如果大壮在鸽子飞行途中给它拽下来，偷偷修改消息，再放它离开。那么小帅就不知道小美写的消息有没有被修改过。</p>
+<p>这就是HTTP的工作方式，听起来有点吓人对吧？我反正不会用HTTP发送账号密码的，您请便。</p>
+<h2 id="一套密钥"><a href="#一套密钥" class="headerlink" title="一套密钥"></a>一套密钥</h2><p>如果小美和小帅是聪明人的话，他们一定会约定用一种加密方式来进行通信。比如说可以把每个字母向后移3个位置，这样消息“secret message”就成了“pbzobq jbppxdb”。</p>
+<p>现在，如果大壮拦住信鸽，他也不知道消息写的都是啥，也很难对内容进行有意义的修改，因为他不知道如何加密解密。但是小帅知道，所以他可以对消息进行反向解密，“pbzobq jbppxdb”就变回了“secret message”。</p>
+<p>这就成了！</p>
+<p>这就是对称加密，如果你知道怎么加密，那你就知道怎么解密。</p>
+<p>上文描述的加密方式其实是凯撒密码。在现实生活中，我们使用更复杂的算法，但是其本质都是一样的。</p>
+<h2 id="如何决定密钥？"><a href="#如何决定密钥？" class="headerlink" title="如何决定密钥？"></a>如何决定密钥？</h2><p>如果通信双方使用的密钥没有泄露的话，那么这种对称加密是很安全的。在凯撒密码中，密钥是我们将每个字母向后移动了多少个位置。在上文中我们用的是3，当然你也可以用4或者12。</p>
+<p>现在问题来了，如果小美和小帅在通信之前没有见过面，他们就没办法构建一个安全的密钥。因为如果他们在消息中传递密钥，那么大壮就可以抓住信鸽并且获取密钥，这样他就可以在小美和小帅的通信过程中随意偷看或修改。</p>
+<p>这就是所谓的中间人攻击，为了避免这种攻击我们只能换一种加密系统。</p>
+<h2 id="鸽子背个盒子"><a href="#鸽子背个盒子" class="headerlink" title="鸽子背个盒子"></a>鸽子背个盒子</h2><p>小美和小帅想到了一个更妙的办法。当小帅想给小美发消息时，需要遵循这个流程：</p>
+<ul>
+<li>小帅给小美飞一只鸽子，啥都没有</li>
+<li>小美收到鸽子，给鸽子上绑一个敞开着的盒子，放飞鸽子</li>
+<li>小帅收到鸽子，把信件放进盒子，把盒子锁上，再放飞鸽子</li>
+<li>小美收到鸽子，用自己的钥匙打开盒子</li>
+</ul>
+<p>这样的话，大壮就不可能通过拦截鸽子来篡改消息，他没有钥匙。当小美给小帅发消息时，遵循同样的流程即可。</p>
+<p>这个过程就叫做非对称加密。非对称是指，小帅虽然能够锁上盒子（加密），但是没办法打开盒子（解密）。在技术术语中，这个盒子就是公钥，小美的钥匙就是私钥。</p>
+<h2 id="凭啥相信这个盒子？"><a href="#凭啥相信这个盒子？" class="headerlink" title="凭啥相信这个盒子？"></a>凭啥相信这个盒子？</h2><p>如果你仔细想想，这里边其实有点问题。小帅收到盒子，凭啥能断定这个盒子就是小美的呢？如果是大壮中途换了一个盒子呢？</p>
+<p>所以小美决定给盒子上签个名，这样小帅收到盒子的时候，看看上面的签名，就知道是不是小美的盒子了。</p>
+<p>所以你一定会接着问，那小帅凭啥可以断定这就是小美的签名呢？好问题，小帅和小美也意识到这个问题，他们最终决定不让小美签名了，不如改换老龚签名。</p>
+<p>老龚又是谁？他是一个非常知名的、值得信赖的人。老龚把自己的签名分发给大家，并且大家都信任他只会给合法的人签名。</p>
+<p>老龚只有确认来者是小美时，他才会在盒子上签名。所以大壮没办法伪造一个带有小美签名的盒子，这样也就骗不了小帅了。</p>
+<p>在技术术语中，老龚就是认证机构。你现在正在使用的浏览器里，打包安装好了各种认证机构的签名。所以当你访问一个网站时，你信任它的盒子，因为你信任老龚，而且老龚告诉你这个盒子是ok的。</p>
+<h2 id="盒子有点沉"><a href="#盒子有点沉" class="headerlink" title="盒子有点沉"></a>盒子有点沉</h2><p>小美和小帅现在有了一个优雅可靠的通信系统，但是他们发现背着盒子的鸽子飞的有点慢。</p>
+<p>所以他们决定只通过这种方法（非对称加密）来交换密钥，之后鸽子就不需要一直背着盒子啦，使用原来的对称加密就够了，还记得凯撒加密吗？</p>
+<p>这样，他们兼容了对称加密的效率，以及非对称加密的可靠。</p>
+<p>在现实世界中，鸽子飞的都挺快。不过，非对称加密确实比对称加密慢，所以我们只用它来交换密钥。</p>
+<p>现在你已经知道HTTP是怎么工作的了，茶应该泡好了吧？</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Shize Gong
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://lzeee2023.life/2023/01/31/%E3%80%90%E8%AF%91%E3%80%91%E7%94%A8%E4%BF%A1%E9%B8%BD%E8%A7%A3%E9%87%8AHTTPS/" title="【译】用信鸽解释HTTPS">http://lzeee2023.life/2023/01/31/【译】用信鸽解释HTTPS/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BF%BB%E8%AF%91/" rel="tag"><i class="fa fa-tag"></i> 翻译</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/01/29/%E3%80%90%E8%AF%91%E3%80%91%E5%8D%9A%E5%AE%A2%E5%86%99%E7%82%B9%E5%95%A5/" rel="prev" title="【译】博客写点啥">
+      <i class="fa fa-chevron-left"></i> 【译】博客写点啥
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/12/%E3%80%90%E8%AF%91%E3%80%91%E4%B8%80%E4%B8%AA%E6%88%90%E5%8A%9F%E7%9A%84git%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B/" rel="next" title="【译】一个成功的git分支模型">
+      【译】一个成功的git分支模型 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E5%B8%85%EF%BC%8C%E5%B0%8F%E7%BE%8E%E5%92%8C%E4%BF%A1%E9%B8%BD%EF%BC%9F"><span class="nav-text">小帅，小美和信鸽？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%80%9A%E4%BF%A1%EF%BC%8Ctoo-simple%EF%BC%8Csometimes-naive"><span class="nav-text">第一次通信，too simple，sometimes naive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%A5%97%E5%AF%86%E9%92%A5"><span class="nav-text">一套密钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%86%B3%E5%AE%9A%E5%AF%86%E9%92%A5%EF%BC%9F"><span class="nav-text">如何决定密钥？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%B8%BD%E5%AD%90%E8%83%8C%E4%B8%AA%E7%9B%92%E5%AD%90"><span class="nav-text">鸽子背个盒子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%AD%E5%95%A5%E7%9B%B8%E4%BF%A1%E8%BF%99%E4%B8%AA%E7%9B%92%E5%AD%90%EF%BC%9F"><span class="nav-text">凭啥相信这个盒子？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%92%E5%AD%90%E6%9C%89%E7%82%B9%E6%B2%89"><span class="nav-text">盒子有点沉</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shize Gong"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Shize Gong</p>
+  <div class="site-description" itemprop="description">I'm Shize Gong, a software development engineer from China.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lzeee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lzeee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shzgong@gmail.com" title="E-Mail → mailto:shzgong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shize Gong</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">75k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:08</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'S3wPyhDpAXOLoN02reRFscqd-gzGzoHsz',
+      appKey     : 'C0qZCIPYeRbOgUMkRQ6vDmGZ',
+      placeholder: "如果你愿意，随便说点什么吧...",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
