@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lzeee2023.life","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="虽然我只工作了两年，但是读起来还是有一些共鸣的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】20年编程生涯的20条经验">
+<meta property="og:url" content="http://lzeee2023.life/2023/08/19/%E3%80%90%E8%AF%91%E3%80%9120%E5%B9%B4%E7%BC%96%E7%A8%8B%E7%94%9F%E6%B6%AF%E7%9A%84%E7%9A%8420%E6%9D%A1%E7%BB%8F%E9%AA%8C/index.html">
+<meta property="og:site_name" content="层楼">
+<meta property="og:description" content="虽然我只工作了两年，但是读起来还是有一些共鸣的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-19T02:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-26T05:47:35.613Z">
+<meta property="article:author" content="Shize Gong">
+<meta property="article:tag" content="翻译">
+<meta property="article:tag" content="经验">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lzeee2023.life/2023/08/19/%E3%80%90%E8%AF%91%E3%80%9120%E5%B9%B4%E7%BC%96%E7%A8%8B%E7%94%9F%E6%B6%AF%E7%9A%84%E7%9A%8420%E6%9D%A1%E7%BB%8F%E9%AA%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>【译】20年编程生涯的20条经验 | 层楼</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">层楼</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Write codes that work and speak</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lzeee2023.life/2023/08/19/%E3%80%90%E8%AF%91%E3%80%9120%E5%B9%B4%E7%BC%96%E7%A8%8B%E7%94%9F%E6%B6%AF%E7%9A%84%E7%9A%8420%E6%9D%A1%E7%BB%8F%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shize Gong">
+      <meta itemprop="description" content="I'm Shize Gong, a software development engineer from China.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="层楼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】20年编程生涯的20条经验
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-19 10:00:00" itemprop="dateCreated datePublished" datetime="2023-08-19T10:00:00+08:00">2023-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2023/08/19/%E3%80%90%E8%AF%91%E3%80%9120%E5%B9%B4%E7%BC%96%E7%A8%8B%E7%94%9F%E6%B6%AF%E7%9A%84%E7%9A%8420%E6%9D%A1%E7%BB%8F%E9%AA%8C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/08/19/%E3%80%90%E8%AF%91%E3%80%9120%E5%B9%B4%E7%BC%96%E7%A8%8B%E7%94%9F%E6%B6%AF%E7%9A%84%E7%9A%8420%E6%9D%A1%E7%BB%8F%E9%AA%8C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+            <div class="post-description">虽然我只工作了两年，但是读起来还是有一些共鸣的</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>译自：<a target="_blank" rel="noopener" href="https://www.simplethread.com/20-things-ive-learned-in-my-20-years-as-a-software-engineer">20 Things I’ve Learned in my 20 Years as a Software Engineer</a></p>
+<h2 id="重要声明（必读）"><a href="#重要声明（必读）" class="headerlink" title="重要声明（必读）"></a>重要声明（必读）</h2><p>下面是一篇充满建议的博客。从前人的经历中吸取教训，对我们的成功是一大助力。但我们往往会忽略一个重要前提：几乎所有建议都是有上下文背景的，但这些背景往往不被提及。</p>
+<p>“你就是需要提高价格！”这种说法可能来自一家运营了20年的公司，并且他们一直在做赔本的买卖，成功吸引了大量客户。</p>
+<p>“你需要将系统构建成微服务！”这种说法可能来自一个快速构建出单个应用的公司，并且已经吸引了成千上万的用户，规模的扩大迫使他们考虑转向微服务。</p>
+<p>如果不了解相关背景，那么这些建议就毫无意义，甚至会让情况更糟。假如这些公司在早期就使用了建议中的做法，可能也不会有后面的成功。我们很容易就陷入忽略上下文的困境，更喜欢用当下的视角去看待历史的经验。</p>
+<p>所以，为了让你对文中这些建议的背景有所了解，我简要介绍一下我自己。在我职业生涯的前半段，我作为软件工程师为各种小型企业和创业公司工作。之后，我进入了咨询行业，在一些大型企业工作。再往后我创办了Simple Thread，我们的团队从2人发展到25人。10年前我们主要和中小企业合作，现在我们也和大公司合作。</p>
+<p>我的建议来自：</p>
+<ol>
+<li>一直在小团队中工作，必须用有限的资源完成许多任务的人。</li>
+<li>更重视可以正常工作的软件，而不是某些特定工具的人。</li>
+<li>一直在启动新项目，但是同时也在维护多个系统的人。</li>
+<li>认为工程师的生产力高于其他因素的人。</li>
+</ol>
+<p>过去20年的工作经历，塑造了我如何看待软件，并让我形成了一些信条。我试图把它们总结出来，整理成方便阅读的清单，希望能对你有所帮助。</p>
+<h2 id="清单"><a href="#清单" class="headerlink" title="清单"></a>清单</h2><h3 id="1-我知道的并不多"><a href="#1-我知道的并不多" class="headerlink" title="1. 我知道的并不多"></a>1. 我知道的并不多</h3><p>“你怎么可能不知道BGP是啥？”、“你从来没听过Rust吗？”，大多数软件工程师应该都听到过类似的问题，而且不厌其烦。我们热爱软件开发的一个主要原因，可能是因为它需要终身学习。无论你去了解软件开发的哪个领域，都会有日新月异的知识不断出现。这意味着，虽然你已有数十年的职业生涯，但是和另外一个职能听起来相似的人比，也会有巨大的知识差异。你越早意识到这一点，就能越早摆脱“冒名顶替综合征”的困扰，从学习新知识和帮助他人中获得乐趣.</p>
+<h3 id="2-软件开发中最困难的部分是构建正确的东西"><a href="#2-软件开发中最困难的部分是构建正确的东西" class="headerlink" title="2. 软件开发中最困难的部分是构建正确的东西"></a>2. 软件开发中最困难的部分是构建正确的东西</h3><p>我知道这句话已经说烂了。但总有一些工程师不相信这一点，因为这样说似乎贬低了他们编码的重要性。但是就我看来，并非如此。因为这样的观点其实强调了我们工作环境的复杂和非理性，这使得软件开发更有挑战性。你可以设计出技术上惊世骇俗，令人拍手叫绝的软件，但是可能没人需要用它，这种情况每天都在发生。设计软件这件事其实主要是倾听的过程，我们不得不同时扮演软件工程师、预言家、人类学家等角色。在这个过程中有所投入，无论是请教专门的用户体验团队，还是通过自学相关知识，都会带来巨大回报。因为你很难衡量构建错误的软件所花费的成本，你又不是仅仅花费了时间。</p>
+<h3 id="3-最优秀的软件工程师像设计师一样思考"><a href="#3-最优秀的软件工程师像设计师一样思考" class="headerlink" title="3. 最优秀的软件工程师像设计师一样思考"></a>3. 最优秀的软件工程师像设计师一样思考</h3><p>优秀的软件工程师深入思考他们产品的用户体验。他们可能不会用一些专业术语，但是对于API接口、代码内函数、用户界面、通信协议或者其他任何接口，他们都会去考虑谁会使用它？为什么需要使用它？用户如何使用它？以及对用户来说什么才是重要的。牢记用户的需求，是产品体验良好的核心。</p>
+<h3 id="4-最好的代码是没有代码，或者不需要你维护的代码"><a href="#4-最好的代码是没有代码，或者不需要你维护的代码" class="headerlink" title="4. 最好的代码是没有代码，或者不需要你维护的代码"></a>4. 最好的代码是没有代码，或者不需要你维护的代码</h3><p>我想说的是“会写代码就会去写代码”。你去问任何一个行业的人如何解决问题，他们都会倾向于用自己擅长的方式解决，人性如此。大部分软件工程师在面临问题时，当非技术的解决方案不明显时，往往倾向于写代码解决问题。对你不需要维护的代码是一样的。工程师往往倾向于造轮子，哪怕已经有很多轮子了。这是一种权衡的艺术，有很多原因你可以自己造轮子，但是一定要避免<br>“非自家研发综合征”。</p>
+<h3 id="5-软件是达到目的的手段"><a href="#5-软件是达到目的的手段" class="headerlink" title="5. 软件是达到目的的手段"></a>5. 软件是达到目的的手段</h3><p>任何一位软件工程师，他的主要职责都是提供价值。很少有开发者能理解这一点，更少的人能够内化这一点。真正内化这一点以后，你就能用不同的方式解决问题，用不同的视角看待你的工具。如果你真的相信软件是为了达成某种目的而存在的，那你就会去为完成任务寻找最合适的工具，即使这个工具根本不是软件。</p>
+<h3 id="6-有时候你必须停止磨刀，动手砍开屎山"><a href="#6-有时候你必须停止磨刀，动手砍开屎山" class="headerlink" title="6. 有时候你必须停止磨刀，动手砍开屎山"></a>6. 有时候你必须停止磨刀，动手砍开屎山</h3><p>有些人倾向于立即动手解决问题，直接开始写代码。有些人倾向于不停地研究、分析和思考，并且深陷其中。在这种情况下，你可以给自己定一个截止日期，然后开始你的探究分析。当你开始动手解决问题时，你会更快地学到更多的东西，这会引导着你不断优化已有地方案。</p>
+<h3 id="7-如果你不能掌握所有的可能性，你就不能设计一个好的系统"><a href="#7-如果你不能掌握所有的可能性，你就不能设计一个好的系统" class="headerlink" title="7. 如果你不能掌握所有的可能性，你就不能设计一个好的系统"></a>7. 如果你不能掌握所有的可能性，你就不能设计一个好的系统</h3><p>随着我的工作职责日渐远离具体的软件开发，我遇到了这个难题。了解开发者的生态是一项巨大的任务，理解其中的可能性至关重要。在一个给定的开发生态里，如果你不了解其中可能的选择和可用的东西，那你几乎无法设计出合理的解决方案，除非是很简单的问题。总之，当心那些很久不写代码的人设计出来的系统。</p>
+<h3 id="8-每个系统最后都会变得一团糟，接受这一点"><a href="#8-每个系统最后都会变得一团糟，接受这一点" class="headerlink" title="8. 每个系统最后都会变得一团糟，接受这一点"></a>8. 每个系统最后都会变得一团糟，接受这一点</h3><p>Bjarne Stroustrup有一句名言：“只有两种编程语言：人们抱怨的语言和没人用的语言”。这句话也适用于大型软件系统，没有所谓“正确”的架构，你永远无法偿还所有的技术债务，你不可能设计出完美无缺的接口，你的测试始终跟不上开发的节奏。但这些都不是摆烂的借口，只是给你提供一种视角。不要过于追求优雅和完美，但是需要追求改进和提高，搭建一个让你的团队乐在其中并且能持续提供价值的系统。</p>
+<h3 id="9-所有人的“为什么”都不够"><a href="#9-所有人的“为什么”都不够" class="headerlink" title="9. 所有人的“为什么”都不够"></a>9. 所有人的“为什么”都不够</h3><p>质疑所有的“一直以来都是这样”的事。近期有新员工加入团队吗？看看他会卡在什么地方，会提出什么样的问题？提交PR的需求不合理吗？确保你真的理解了目标，理解了为什么要推动这个功能需求。如果你没有理解，那你就不断地问为什么，直到你理解为止。</p>
+<h3 id="10-我们应该强调远离0-1x程序员，而不是寻找10x程序员"><a href="#10-我们应该强调远离0-1x程序员，而不是寻找10x程序员" class="headerlink" title="10. 我们应该强调远离0.1x程序员，而不是寻找10x程序员"></a>10. 我们应该强调远离0.1x程序员，而不是寻找10x程序员</h3><p>“10x程序员”是一个愚蠢的神话。认为某人能在1天内，能完成另外一个有能力、努力工作、经验相近的程序员在2周内完成的工作，本身就很荒谬。我确实见过能编写10倍数量代码的程序员，然后你就要修复10倍以上的问题。某些人如果被称为10x程序员，那也只能是和0.1x程序员对比，说的就是那些浪费时间、不请教问题、不寻求反馈、不测试代码、不考虑边界条件等的这些人。我们应该关注让这些0.1x程序员远离我们的团队，而不是寻找荒谬的10x程序员。</p>
+<h3 id="11-资深工程师和初级工程师的最大区别之一，是他们对事情应该是怎么样有自己的观点"><a href="#11-资深工程师和初级工程师的最大区别之一，是他们对事情应该是怎么样有自己的观点" class="headerlink" title="11. 资深工程师和初级工程师的最大区别之一，是他们对事情应该是怎么样有自己的观点"></a>11. 资深工程师和初级工程师的最大区别之一，是他们对事情应该是怎么样有自己的观点</h3><p>一个资深工程师对于开发工具以及如何构建软件没有自己的观点，没有比这更糟的事了。我宁愿有人提出我会强烈反对的观点，也不愿意他们毫无观点。如果你在使用工具时，没有在许多方面都对工具不满意，说明你要积累更多的经验。你要探索更多的编程语言、库和范式。通过主动了解其他人解决问题、完成任务的工具和技术，可以大幅提高你的技术水平，其他方式很难与之媲美。</p>
+<h3 id="12-人们并不是真的想创新"><a href="#12-人们并不是真的想创新" class="headerlink" title="12. 人们并不是真的想创新"></a>12. 人们并不是真的想创新</h3><p>人们经常讨论创新，但是他们追求的往往是廉价的新颖。如果你真的在创新，你就会改变人们的做事方式，这个时候你要准备好接受大量的负面反馈。如果你相信你做的事，并且坚信它是有益的，那就准备好打持久战！</p>
+<h3 id="13-你的数据是系统中最重要的部分"><a href="#13-你的数据是系统中最重要的部分" class="headerlink" title="13. 你的数据是系统中最重要的部分"></a>13. 你的数据是系统中最重要的部分</h3><p>我见过很多系统，它们维持数据完整性只靠美好的愿望。在这样的系统中，偏离最佳路径的任何操作都会引入脏数据，在未来脏数据的处理会是一场噩梦。请记住，数据大概率比你的代码更长寿。花时间保证数据的整洁和清晰，长期看来很有价值。</p>
+<h3 id="14-寻找技术鲨鱼"><a href="#14-寻找技术鲨鱼" class="headerlink" title="14. 寻找技术鲨鱼"></a>14. 寻找技术鲨鱼</h3><p>一些老的技术一直被沿用，这些是技术鲨鱼，而不是落后的技术恐龙。它们解决问题的能力非常强大，以至于在快速变化的技术世界中存活下来。不要瞧不起这些技术，没有很好的理由也不要替换掉这些技术。这些技术不花里胡哨，也不震撼人心，但是它们能帮你避免许多个彻夜不眠来完成任务。</p>
+<h3 id="15-不要把谦逊当成无知"><a href="#15-不要把谦逊当成无知" class="headerlink" title="15. 不要把谦逊当成无知"></a>15. 不要把谦逊当成无知</h3><p>有许多工程师，你不问他，他就不会发表意见。永远不要以为没人当面diss你，就代表你做的足够好、没有改进空间了。有时候，我们不太想倾听那些最吵闹的人的意见。和你身边的人沟通，向他们请教问题、寻求反馈，你会庆幸你这样做了。</p>
+<h3 id="16-软件工程师应该定期写作"><a href="#16-软件工程师应该定期写作" class="headerlink" title="16. 软件工程师应该定期写作"></a>16. 软件工程师应该定期写作</h3><p>软件工程师应该定期写博客、写日记、编写文档，总之需要做一些事，来锻炼写作沟通的技能。写作帮助你思考问题，帮助你跟团队的成员，以及未来的自己更好的沟通。优秀的写作沟通技能是软件工程师必备技能之一。</p>
+<h3 id="17-让你的流程尽量精简"><a href="#17-让你的流程尽量精简" class="headerlink" title="17. 让你的流程尽量精简"></a>17. 让你的流程尽量精简</h3><p>现在，每个工程师都想变得”敏捷”，”敏捷”指的是以小块的方式构建软件，并不断学习、持续迭代。如果有人试图将更多的东西塞到这个流程中，那么他们可能在推销敏捷开发以外的其他观点。我并不是说敏捷开发过程不需要问责和帮助。但是你有听过喜欢的科技公司或者大型开源项目中有人在吹嘘自己优秀的Scrum流程吗？在你真的需要更多之前，保持流程的精简。相信你的团队，他们会交付的。</p>
+<h3 id="18-跟所有人一样，软件工程师也需要归属感"><a href="#18-跟所有人一样，软件工程师也需要归属感" class="headerlink" title="18. 跟所有人一样，软件工程师也需要归属感"></a>18. 跟所有人一样，软件工程师也需要归属感</h3><p>如果你让一个人和他的工作成果脱钩，那么他就不会认真对待工作。我觉得这是必然的，而这也是跨职能团队非常有效的主要原因，也是DevOps变得这么流行的原因。这不仅仅关乎任务交接和效率的高低，而且关乎负责从头到尾的整个过程，并且对交付成果负有直接的责任。让一群充满激情的人完全负责设计、构建和交付（软件或任何东西），惊人的事情就会出现。</p>
+<h3 id="19-面试几乎无法判断一个人会不会成为出色的团队成员"><a href="#19-面试几乎无法判断一个人会不会成为出色的团队成员" class="headerlink" title="19. 面试几乎无法判断一个人会不会成为出色的团队成员"></a>19. 面试几乎无法判断一个人会不会成为出色的团队成员</h3><p>面试最好用于尝试了解一个人是谁，以及他对某个专业领域的兴趣。想要在面试中判断一个人会不会成为出色的团队成员，几乎是徒劳。请相信我，一个人是不是聪明、是不是知识渊博，跟他会不会成为出色的成员没有任何关系。在面试中，没人会告诉你他这个人不可靠、他喜欢冒犯别人、他傲慢且自以为是、他从不按时参加会议。有些面试官声称通过一些迹象能判断出来：“如果第一次面试中途请假，那他们肯定不会再来了”，都是胡扯。如果你用这些迹象来猜测判断，那你可能失去优秀的候选人。</p>
+<h3 id="20-持续努力构建更小的系统"><a href="#20-持续努力构建更小的系统" class="headerlink" title="20. 持续努力构建更小的系统"></a>20. 持续努力构建更小的系统</h3><p>有很多因素会推动着你，从一开始就构建更大的系统。比如无法确定预算如何分配、无法决定砍掉哪些功能、希望交付系统的“最佳版本”等。所有这些事情都会强烈地推动着你去构建更多的东西、更大的系统。你应该反对这件事。在构建系统的过程中，你还会学到更多东西，最终系统会迭代成一个比最初设计更好的系统。我很惊讶为什么很多人不认可这一点。</p>
+<h2 id="那么你呢？"><a href="#那么你呢？" class="headerlink" title="那么你呢？"></a>那么你呢？</h2><p>所以，以上就是我20年的职业生涯概括出的20条思考。如果其中有什么让你感同身受，我愿意听听你的反馈。我也很愿意听到你在职业生涯中都有哪些思考，如果你想分享，请自由的在评论区留言吧~</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Shize Gong
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://lzeee2023.life/2023/08/19/%E3%80%90%E8%AF%91%E3%80%9120%E5%B9%B4%E7%BC%96%E7%A8%8B%E7%94%9F%E6%B6%AF%E7%9A%84%E7%9A%8420%E6%9D%A1%E7%BB%8F%E9%AA%8C/" title="【译】20年编程生涯的20条经验">http://lzeee2023.life/2023/08/19/【译】20年编程生涯的的20条经验/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BF%BB%E8%AF%91/" rel="tag"><i class="fa fa-tag"></i> 翻译</a>
+              <a href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag"><i class="fa fa-tag"></i> 经验</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/12/%E3%80%90%E8%AF%91%E3%80%91%E8%BF%9C%E7%A6%BB%E7%AB%9E%E4%BA%89%EF%BC%8C%E8%BF%BD%E6%B1%82%E7%9C%9F%E6%88%91/" rel="prev" title="【译】远离竞争，追寻真我">
+      <i class="fa fa-chevron-left"></i> 【译】远离竞争，追寻真我
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/08/26/%E3%80%90%E8%AF%91%E3%80%9160%E5%B9%B4%E6%9D%A5%E9%A6%96%E6%AC%A1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%96%B0%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E8%8C%83%E5%BC%8F%EF%BC%9A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="next" title="【译】60年来首次出现的新用户界面范式：人工智能">
+      【译】60年来首次出现的新用户界面范式：人工智能 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E5%A3%B0%E6%98%8E%EF%BC%88%E5%BF%85%E8%AF%BB%EF%BC%89"><span class="nav-text">重要声明（必读）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E5%8D%95"><span class="nav-text">清单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%88%91%E7%9F%A5%E9%81%93%E7%9A%84%E5%B9%B6%E4%B8%8D%E5%A4%9A"><span class="nav-text">1. 我知道的并不多</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B8%AD%E6%9C%80%E5%9B%B0%E9%9A%BE%E7%9A%84%E9%83%A8%E5%88%86%E6%98%AF%E6%9E%84%E5%BB%BA%E6%AD%A3%E7%A1%AE%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="nav-text">2. 软件开发中最困难的部分是构建正确的东西</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%80%E4%BC%98%E7%A7%80%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%83%8F%E8%AE%BE%E8%AE%A1%E5%B8%88%E4%B8%80%E6%A0%B7%E6%80%9D%E8%80%83"><span class="nav-text">3. 最优秀的软件工程师像设计师一样思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%9C%80%E5%A5%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%98%AF%E6%B2%A1%E6%9C%89%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%88%96%E8%80%85%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BD%A0%E7%BB%B4%E6%8A%A4%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-text">4. 最好的代码是没有代码，或者不需要你维护的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%BD%AF%E4%BB%B6%E6%98%AF%E8%BE%BE%E5%88%B0%E7%9B%AE%E7%9A%84%E7%9A%84%E6%89%8B%E6%AE%B5"><span class="nav-text">5. 软件是达到目的的手段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%9C%89%E6%97%B6%E5%80%99%E4%BD%A0%E5%BF%85%E9%A1%BB%E5%81%9C%E6%AD%A2%E7%A3%A8%E5%88%80%EF%BC%8C%E5%8A%A8%E6%89%8B%E7%A0%8D%E5%BC%80%E5%B1%8E%E5%B1%B1"><span class="nav-text">6. 有时候你必须停止磨刀，动手砍开屎山</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%A6%82%E6%9E%9C%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%8E%8C%E6%8F%A1%E6%89%80%E6%9C%89%E7%9A%84%E5%8F%AF%E8%83%BD%E6%80%A7%EF%BC%8C%E4%BD%A0%E5%B0%B1%E4%B8%8D%E8%83%BD%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E7%B3%BB%E7%BB%9F"><span class="nav-text">7. 如果你不能掌握所有的可能性，你就不能设计一个好的系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%AF%8F%E4%B8%AA%E7%B3%BB%E7%BB%9F%E6%9C%80%E5%90%8E%E9%83%BD%E4%BC%9A%E5%8F%98%E5%BE%97%E4%B8%80%E5%9B%A2%E7%B3%9F%EF%BC%8C%E6%8E%A5%E5%8F%97%E8%BF%99%E4%B8%80%E7%82%B9"><span class="nav-text">8. 每个系统最后都会变得一团糟，接受这一点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E6%89%80%E6%9C%89%E4%BA%BA%E7%9A%84%E2%80%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E2%80%9D%E9%83%BD%E4%B8%8D%E5%A4%9F"><span class="nav-text">9. 所有人的“为什么”都不够</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E6%88%91%E4%BB%AC%E5%BA%94%E8%AF%A5%E5%BC%BA%E8%B0%83%E8%BF%9C%E7%A6%BB0-1x%E7%A8%8B%E5%BA%8F%E5%91%98%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%AF%BB%E6%89%BE10x%E7%A8%8B%E5%BA%8F%E5%91%98"><span class="nav-text">10. 我们应该强调远离0.1x程序员，而不是寻找10x程序员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E8%B5%84%E6%B7%B1%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%92%8C%E5%88%9D%E7%BA%A7%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E6%9C%80%E5%A4%A7%E5%8C%BA%E5%88%AB%E4%B9%8B%E4%B8%80%EF%BC%8C%E6%98%AF%E4%BB%96%E4%BB%AC%E5%AF%B9%E4%BA%8B%E6%83%85%E5%BA%94%E8%AF%A5%E6%98%AF%E6%80%8E%E4%B9%88%E6%A0%B7%E6%9C%89%E8%87%AA%E5%B7%B1%E7%9A%84%E8%A7%82%E7%82%B9"><span class="nav-text">11. 资深工程师和初级工程师的最大区别之一，是他们对事情应该是怎么样有自己的观点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E4%BA%BA%E4%BB%AC%E5%B9%B6%E4%B8%8D%E6%98%AF%E7%9C%9F%E7%9A%84%E6%83%B3%E5%88%9B%E6%96%B0"><span class="nav-text">12. 人们并不是真的想创新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E9%83%A8%E5%88%86"><span class="nav-text">13. 你的数据是系统中最重要的部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E5%AF%BB%E6%89%BE%E6%8A%80%E6%9C%AF%E9%B2%A8%E9%B1%BC"><span class="nav-text">14. 寻找技术鲨鱼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E4%B8%8D%E8%A6%81%E6%8A%8A%E8%B0%A6%E9%80%8A%E5%BD%93%E6%88%90%E6%97%A0%E7%9F%A5"><span class="nav-text">15. 不要把谦逊当成无知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%BA%94%E8%AF%A5%E5%AE%9A%E6%9C%9F%E5%86%99%E4%BD%9C"><span class="nav-text">16. 软件工程师应该定期写作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-%E8%AE%A9%E4%BD%A0%E7%9A%84%E6%B5%81%E7%A8%8B%E5%B0%BD%E9%87%8F%E7%B2%BE%E7%AE%80"><span class="nav-text">17. 让你的流程尽量精简</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-%E8%B7%9F%E6%89%80%E6%9C%89%E4%BA%BA%E4%B8%80%E6%A0%B7%EF%BC%8C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%B9%9F%E9%9C%80%E8%A6%81%E5%BD%92%E5%B1%9E%E6%84%9F"><span class="nav-text">18. 跟所有人一样，软件工程师也需要归属感</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-%E9%9D%A2%E8%AF%95%E5%87%A0%E4%B9%8E%E6%97%A0%E6%B3%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E4%BA%BA%E4%BC%9A%E4%B8%8D%E4%BC%9A%E6%88%90%E4%B8%BA%E5%87%BA%E8%89%B2%E7%9A%84%E5%9B%A2%E9%98%9F%E6%88%90%E5%91%98"><span class="nav-text">19. 面试几乎无法判断一个人会不会成为出色的团队成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-%E6%8C%81%E7%BB%AD%E5%8A%AA%E5%8A%9B%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%B0%8F%E7%9A%84%E7%B3%BB%E7%BB%9F"><span class="nav-text">20. 持续努力构建更小的系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%A3%E4%B9%88%E4%BD%A0%E5%91%A2%EF%BC%9F"><span class="nav-text">那么你呢？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shize Gong"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Shize Gong</p>
+  <div class="site-description" itemprop="description">I'm Shize Gong, a software development engineer from China.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lzeee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lzeee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shzgong@gmail.com" title="E-Mail → mailto:shzgong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shize Gong</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">81k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:14</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'S3wPyhDpAXOLoN02reRFscqd-gzGzoHsz',
+      appKey     : 'C0qZCIPYeRbOgUMkRQ6vDmGZ',
+      placeholder: "如果你愿意，随便说点什么吧...",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
